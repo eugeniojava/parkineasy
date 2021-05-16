@@ -9,9 +9,32 @@ import java.time.LocalTime;
 public class Vaga {
 
     private String codigoVaga;
-    private Long codigoTicket;
-    private LocalDateTime dataHorarioReserva;
+    private Integer situacaoVaga;
     private TipoVaga tipoVaga;
+
+    public String getCodigoVaga() {
+        return codigoVaga;
+    }
+
+    public void setCodigoVaga(String codigoVaga) {
+        this.codigoVaga = codigoVaga;
+    }
+
+    public Integer getSituacaoVaga() {
+        return situacaoVaga;
+    }
+
+    public void setSituacaoVaga(Integer situacaoVaga) {
+        this.situacaoVaga = situacaoVaga;
+    }
+
+    public TipoVaga getTipoVaga() {
+        return tipoVaga;
+    }
+
+    public void setTipoVaga(TipoVaga tipoVaga) {
+        this.tipoVaga = tipoVaga;
+    }
 
     //TODO buscarVaga()
     //TODO gerarTicket()
