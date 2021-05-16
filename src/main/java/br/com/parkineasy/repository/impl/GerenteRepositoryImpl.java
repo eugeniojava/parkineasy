@@ -16,7 +16,7 @@ public class GerenteRepositoryImpl implements GerenteRepository {
 
     @Override
     public List<Gerente> ConsultaGerente(String userName, String senha) {
-        ResultSet resultSet = consulta.executaConsulta("select *from gerente where username_gerente ="+userName+"and password_gerente ="+senha);
+        ResultSet resultSet = consulta.executaConsulta("select *from gerente where username_gerente ='"+userName+"'and password_gerente ='"+senha+"'");
         List<Gerente> gerente = new ArrayList<>();
         try {
             if(resultSet.next()){
@@ -33,8 +33,8 @@ public class GerenteRepositoryImpl implements GerenteRepository {
 
     public static void main(String[] args) {
         GerenteRepositoryImpl gerenteRepository = new GerenteRepositoryImpl();
-        String nome = "'Bruno'";
-        String pass = "'ABC123'";
+        String nome = "Bruno";
+        String pass = "ABC123";
         gerenteRepository.ConsultaGerente(nome,pass);
 
     }
