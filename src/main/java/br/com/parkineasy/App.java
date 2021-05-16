@@ -1,25 +1,54 @@
 package br.com.parkineasy;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.nio.file.Paths;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
 
-    @Override
-    public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+    public static void nextScene(String name, int height, int width, URL url, ActionEvent event){
+        Parent root;
+        try {
+            root = FXMLLoader.load(url);
+            Stage stage = new Stage();
+            stage.setTitle(name);
+            stage.setScene(new Scene(root, height, width));
+            stage.setResizable(false);
+            stage.show();
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
+    public static void infoBox(String infoMessage, String titleBar, String headerMessage){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titleBar);
+        alert.setHeaderText(headerMessage);
+        alert.setContentText(infoMessage);
+        alert.showAndWait();
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+
+        URL url = Paths.get("C:\\Users\\MARCOS\\Desktop\\parkineasy\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TelaInicial.fxml").toUri().toURL();
+        Parent root = FXMLLoader.load(url);
+        stage.setTitle("Seleção de Módulo");
+        stage.setScene(new Scene(root, 520, 400));
+        stage.setResizable(false);
         stage.show();
     }
 
