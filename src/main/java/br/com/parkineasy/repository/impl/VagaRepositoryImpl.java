@@ -17,21 +17,29 @@ public class VagaRepositoryImpl implements VagaRepository {
     @Override
     public List<Vaga> listaTodas() {
         ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga");
-
+        List<Vaga> vagas = new ArrayList<>();
 
         try {
-            List<Vaga> vagas = new ArrayList<>();
-
             while (resultSet.next()) {
-                  Vaga vaga = new Vaga();
-                  vaga.setCodigoVaga(resultSet.getString(1));
-                  vaga.setSituacaoVaga(resultSet.getInt(2));
-                  vaga.setTipoVaga(TipoVaga.values()[resultSet.getInt(3)]);
+                Vaga vaga = new Vaga();
+
+                vaga.setCodigoVaga(resultSet.getString(1));
+                vaga.setSituacaoVaga(resultSet.getInt(2));
+                vaga.setTipoVaga(TipoVaga.values()[resultSet.getInt(3)]);
+
+                vagas.add(vaga);
             }
+            vagas.forEach(System.out::println);
         } catch (SQLException sqlException) {
             System.err.println(sqlException.getMessage());
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
+
+        vagaRepository.listaTodas();
     }
 
     @Override
