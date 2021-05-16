@@ -2,7 +2,8 @@ package br.com.parkineasy.model.enums;
 
 public enum TipoVaga {
 
-    COMUM,
+    DEFICIENTE,
     IDOSO,
-    DEFICIENTE
+    COMUM
+
 }

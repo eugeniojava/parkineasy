@@ -8,5 +8,5 @@ public interface VagaRepository {
 
     List<Vaga> listaTodas();
 
-    List<Vaga> listaPorTipo(String tipo);
+    List<Vaga> listaPorTipo(Integer tipo);
 }

@@ -23,9 +23,9 @@ public class VagaRepositoryImpl implements VagaRepository {
             while (resultSet.next()) {
                 Vaga vaga = new Vaga();
 
-                vaga.setCodigoVaga(resultSet.getString(1));
-                vaga.setSituacaoVaga(resultSet.getInt(2));
-                vaga.setTipoVaga(TipoVaga.values()[resultSet.getInt(3)]);
+                vaga.setCodigoVaga(resultSet.getString("id_vaga"));
+                vaga.setSituacaoVaga(resultSet.getInt("sit_vaga"));
+                vaga.setTipoVaga(TipoVaga.values()[resultSet.getInt("tip_vaga") - 1]);
 
                 vagas.add(vaga);
             }
@@ -40,19 +40,25 @@ public class VagaRepositoryImpl implements VagaRepository {
         VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
 
         vagaRepository.listaTodas();
+        vagaRepository.listaPorTipo(3);
     }
 
     @Override
-    public List<Vaga> listaPorTipo(String tipo) {
-        ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga WHERE"+tipo+" = tip_vaga");
+    public List<Vaga> listaPorTipo(Integer tipo) {
+        ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga WHERE tip_vaga ="+tipo);
+        List<Vaga> vagas = new ArrayList<>();
         try {
-            List<Vaga> vagas = new ArrayList<>();
-            if(resultSet.next()) {
+
+            while(resultSet.next()) {
                 Vaga vaga = new Vaga();
-                vaga.setCodigoVaga(resultSet.getString(1));
-                vaga.setSituacaoVaga(resultSet.getInt(2));
-                vaga.setTipoVaga(TipoVaga.values()[resultSet.getInt(3)]);
+
+                vaga.setCodigoVaga(resultSet.getString("id_vaga"));
+                vaga.setSituacaoVaga(resultSet.getInt("sit_vaga"));
+                vaga.setTipoVaga(TipoVaga.values()[resultSet.getInt("tip_vaga") - 1]);
+
+                vagas.add(vaga);
             }
+            vagas.forEach(System.out::println);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

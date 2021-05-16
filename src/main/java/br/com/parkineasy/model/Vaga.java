@@ -36,6 +36,15 @@ public class Vaga {
         this.tipoVaga = tipoVaga;
     }
 
+    @Override
+    public String toString() {
+        return "Vaga{" +
+                "codigoVaga='" + codigoVaga + '\'' +
+                ", situacaoVaga=" + situacaoVaga +
+                ", tipoVaga=" + tipoVaga +
+                '}';
+    }
+
     //TODO buscarVaga()
     //TODO gerarTicket()
     //TODO painelVagas()
