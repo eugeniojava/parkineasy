@@ -6,11 +6,21 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.util.regex.Pattern;
+
 
 /**
  * JavaFX App
  */
 public class App extends Application {
+
+    public void validaInput(String input) {
+        String regex = "^[0-9]+$";
+
+        if (Pattern.matches(regex, input)) {
+
+        }
+    }
 
     @Override
     public void start(Stage stage) {
