@@ -43,7 +43,7 @@
                 <ImageView fitHeight="297.0" fitWidth="185.0" layoutX="63.0" layoutY="-35.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="@../images/seleção-de-módulo.png"/>
+                        <Image url="@../images/selecao-de-modulo.png"/>
                     </image>
                 </ImageView>
                 <Separator layoutY="309.0" prefHeight="3.0" prefWidth="292.0"/>

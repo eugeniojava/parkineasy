@@ -17,7 +17,7 @@ import java.nio.file.Paths;
  */
 public class App extends Application {
 
-    public static final String PARKINEASY_FOLDER = "D:\\geninho\\Documents\\repositories\\parkineasy";
+    public static final String PARKINEASY_FOLDER = "C:\\Users\\MARCOS\\Desktop\\parkineasy";
 
     public static void nextScene(String name, int height, int width, URL url, ActionEvent event) {
         Parent root;

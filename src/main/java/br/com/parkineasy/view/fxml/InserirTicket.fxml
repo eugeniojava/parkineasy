@@ -43,7 +43,7 @@
                 <ImageView fitHeight="179.0" fitWidth="302.0" layoutX="-10.0" layoutY="7.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="@../images/inserção-de-ticket.png"/>
+                        <Image url="@../images/insercao-de-ticket.png"/>
                     </image>
                 </ImageView>
                 <TextField fx:id="tfCodigoInserirTicket" layoutX="83.0" layoutY="221.0"

@@ -43,7 +43,7 @@
                 <ImageView fitHeight="179.0" fitWidth="302.0" layoutX="-10.0" layoutY="7.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="@../images/reimpressão-de-ticket.png"/>
+                        <Image url="@../images/reimpressao-de-ticket.png"/>
                     </image>
                 </ImageView>
                 <TextField fx:id="tfCodigoReimprimirTicket" layoutX="86.0" layoutY="225.0" prefHeight="27.0"

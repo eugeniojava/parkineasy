@@ -43,7 +43,7 @@
                 <ImageView fitHeight="179.0" fitWidth="302.0" layoutX="-10.0" layoutY="7.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="@../images/geração-de-relatório.png"/>
+                        <Image url="@../images/geracao-de-relatorio.png"/>
                     </image>
                 </ImageView>
                 <DatePicker fx:id="dpDataGerarRelatorio" editable="false" layoutX="66.0" layoutY="224.0"

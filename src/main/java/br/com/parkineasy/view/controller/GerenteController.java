@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,7 +24,7 @@ import java.util.ResourceBundle;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
-public class GerenteController implements Initializable {
+public class GerenteController{
 
     ObservableList<ModelTableConsultarVagas> oblist = FXCollections.observableArrayList();
     @FXML
@@ -33,14 +35,6 @@ public class GerenteController implements Initializable {
     private DatePicker dpDataGerarRelatorio;
     @FXML
     private TextField tfCodigoReimprimirTicket;
-    @FXML
-    private TableView<ModelTableConsultarVagas> tableConsultarVagas;
-    @FXML
-    private TableColumn<ModelTableConsultarVagas, String> colAConsultarVagas;
-    @FXML
-    private TableColumn<ModelTableConsultarVagas, String> colBConsultarVagas;
-    @FXML
-    private TableColumn<ModelTableConsultarVagas, String> colCConsultarVagas;
 
     public void pressButtonCancelLogin(ActionEvent event) throws MalformedURLException {
         App.infoBox("Cancelando Login de Gerente!", "Login de Gerente", null);
@@ -121,13 +115,13 @@ public class GerenteController implements Initializable {
         }
     }
 
-    public void pressButtonConsultarVagas(ActionEvent event) throws MalformedURLException {
-        if ("btVoltarPainelVagas".equals(((Control) event.getSource()).getId())) {
-            URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
-                    "\\fxml\\GerenteInicial.fxml").toUri().toURL();
-            App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
-        }
-    }
+//    public void pressButtonConsultarVagas(ActionEvent event) throws MalformedURLException {
+//        if ("btVoltarPainelVagas".equals(((Control) event.getSource()).getId())) {
+//            URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
+//                    "\\fxml\\GerenteInicial.fxml").toUri().toURL();
+//            App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
+//        }
+//    }
 
     public void pressButtonReimprimirTicket(ActionEvent event) throws MalformedURLException {
         switch (((Control) event.getSource()).getId()) {
@@ -151,32 +145,31 @@ public class GerenteController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+//    @Override
+//    public void initialize(URL location, ResourceBundle resources) {
+//
+//        colAConsultarVagas.setCellValueFactory(
+//                new PropertyValueFactory<>("id_vaga"));
+//        colBConsultarVagas.setCellValueFactory(
+//                new PropertyValueFactory<>("tip_vaga"));
+//        colCConsultarVagas.setCellValueFactory(
+//                new PropertyValueFactory<>("sit_vaga"));
+//
+//        tableConsultarVagas.setItems(listaDeVagas());
+//
+//    }
+//    private ObservableList<ModelTableConsultarVagas> listaDeVagas() {
+//        return FXCollections.observableArrayList(
+//                new ModelTableConsultarVagas("A1", "COMUM", "1"),
+//                new ModelTableConsultarVagas("A2", "COMUM", "1"),
+//                new ModelTableConsultarVagas("B5", "COMUM", "0"),
+//                new ModelTableConsultarVagas("B9", "IDOSO", "0"),
+//                new ModelTableConsultarVagas("C3", "DEFICIENTE", "0"),
+//                new ModelTableConsultarVagas("C5", "DEFICIENTE", "1")
+//        );
+//    }
 
-        tableConsultarVagas = new TableView<>();
 
-        colAConsultarVagas = new TableColumn<>("A table column");
-        colAConsultarVagas.setCellValueFactory(new PropertyValueFactory<>("A"));
 
-        colBConsultarVagas = new TableColumn<>("B table column");
-        colBConsultarVagas.setCellValueFactory(new PropertyValueFactory<>("B"));
 
-        colCConsultarVagas = new TableColumn<>("C table column");
-        colCConsultarVagas.setCellValueFactory(new PropertyValueFactory<>("C"));
-
-        tableConsultarVagas.getColumns().add(colAConsultarVagas);
-        tableConsultarVagas.getColumns().add(colBConsultarVagas);
-        tableConsultarVagas.getColumns().add(colCConsultarVagas);
-
-        var m1 = new ModelTableConsultarVagas("A1", "COMUM", 0);
-        var m2 = new ModelTableConsultarVagas("B5", "IDOSO", 1);
-        var m3 = new ModelTableConsultarVagas("C9", "DEFICIENTE", 1);
-
-        oblist.addAll(m1, m2, m3);
-
-        tableConsultarVagas.getItems().addAll(oblist);
-
-        tableConsultarVagas.setPlaceholder(new Label("NENHUMA LINHA PARA MOSTRAR"));
-    }
 }

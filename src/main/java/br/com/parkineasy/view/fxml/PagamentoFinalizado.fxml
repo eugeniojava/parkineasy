@@ -42,7 +42,7 @@
             <children>
                 <ImageView fitHeight="154.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/finalização-do-pagamento.png"/>
+                        <Image url="@../images/finalizacao-do-pagamento.png"/>
                     </image>
                 </ImageView>
             </children>
