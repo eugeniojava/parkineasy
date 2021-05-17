@@ -14,6 +14,10 @@ import java.util.regex.Pattern;
  */
 public class App extends Application {
 
+    public static void main(String[] args) {
+        launch();
+    }
+
     public void validaInput(String input) {
         String regex = "^[0-9]+$";
 
@@ -31,10 +35,6 @@ public class App extends Application {
         var scene = new Scene(new StackPane(label), 640, 480);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 
 }

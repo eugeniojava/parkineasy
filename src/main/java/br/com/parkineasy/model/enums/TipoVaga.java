@@ -5,5 +5,4 @@ public enum TipoVaga {
     DEFICIENTE,
     IDOSO,
     COMUM
-
 }

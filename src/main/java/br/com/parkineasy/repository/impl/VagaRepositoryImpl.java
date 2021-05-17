@@ -14,6 +14,13 @@ public class VagaRepositoryImpl implements VagaRepository {
 
     private final Consulta consulta = new Consulta();
 
+    public static void main(String[] args) {
+        VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
+
+        vagaRepository.listaTodas();
+        vagaRepository.listaPorTipo(3);
+    }
+
     @Override
     public List<Vaga> listaTodas() {
         ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga");
@@ -36,20 +43,13 @@ public class VagaRepositoryImpl implements VagaRepository {
         return null;
     }
 
-    public static void main(String[] args) {
-        VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
-
-        vagaRepository.listaTodas();
-        vagaRepository.listaPorTipo(3);
-    }
-
     @Override
     public List<Vaga> listaPorTipo(Integer tipo) {
-        ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga WHERE tip_vaga ="+tipo);
+        ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga WHERE tip_vaga =" + tipo);
         List<Vaga> vagas = new ArrayList<>();
         try {
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 Vaga vaga = new Vaga();
 
                 vaga.setCodigoVaga(resultSet.getString("id_vaga"));
