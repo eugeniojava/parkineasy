@@ -8,38 +8,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.parkineasy.view.controller.GerenteController">
-   <top>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="154.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/emissão%20de%20relatório%20horizontal.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </top>
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <TableView prefHeight="547.0" prefWidth="600.0" style="-fx-background-color: #2c344c;">
-              <columns>
-                <TableColumn prefWidth="102.0" text="Código do Ticket" />
-                <TableColumn prefWidth="99.0" text="Código da Vaga" />
-                  <TableColumn minWidth="0.0" prefWidth="148.0" text="Código do Comprovante" />
-                  <TableColumn minWidth="0.0" prefWidth="63.0" text="Entrada" />
-                  <TableColumn minWidth="0.0" prefWidth="72.0" text="Saída" />
-                  <TableColumn minWidth="0.0" prefWidth="115.0" text="Valor Pago" />
-              </columns>
-            </TableView>
-            <Button fx:id="btVoltarEmissaoRelatorio" layoutX="500.0" layoutY="550.0" mnemonicParsing="false" onAction="#pressButtonGerarRelatorio" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #2c344c;" text="Voltar" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-   </center>
+<BorderPane xmlns:fx="http://javafx.com/fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="735.0" prefWidth="600.0" xmlns="http://javafx.com/javafx"
+            fx:controller="br.com.parkineasy.view.controller.GerenteController">
+    <top>
+        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="600.0"
+                    BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="154.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/emissão-de-relatório-horizontal.png"/>
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </top>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <TableView prefHeight="547.0" prefWidth="600.0" style="-fx-background-color: #2c344c;">
+                    <columns>
+                        <TableColumn prefWidth="102.0" text="Código do Ticket"/>
+                        <TableColumn prefWidth="99.0" text="Código da Vaga"/>
+                        <TableColumn minWidth="0.0" prefWidth="148.0" text="Código do Comprovante"/>
+                        <TableColumn minWidth="0.0" prefWidth="63.0" text="Entrada"/>
+                        <TableColumn minWidth="0.0" prefWidth="72.0" text="Saída"/>
+                        <TableColumn minWidth="0.0" prefWidth="115.0" text="Valor Pago"/>
+                    </columns>
+                </TableView>
+                <Button fx:id="btVoltarEmissaoRelatorio" layoutX="500.0" layoutY="550.0" mnemonicParsing="false"
+                        onAction="#pressButtonGerarRelatorio" prefHeight="27.0" prefWidth="94.0"
+                        style="-fx-background-color: #2c344c;" text="Voltar" textFill="WHITE">
+                    <font>
+                        <Font size="13.0"/>
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+    </center>
 </BorderPane>

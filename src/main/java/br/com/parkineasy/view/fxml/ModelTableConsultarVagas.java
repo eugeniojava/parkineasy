@@ -5,7 +5,7 @@ public class ModelTableConsultarVagas {
     String id_vaga, tip_vaga;
     Integer sit_vaga;
 
-    public ModelTableConsultarVagas(String id_vaga, String tip_vaga, Integer sit_vaga){
+    public ModelTableConsultarVagas(String id_vaga, String tip_vaga, Integer sit_vaga) {
         this.id_vaga = id_vaga;
         this.tip_vaga = tip_vaga;
         this.sit_vaga = sit_vaga;
