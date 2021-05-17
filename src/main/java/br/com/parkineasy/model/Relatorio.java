@@ -3,6 +3,7 @@ package br.com.parkineasy.model;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Relatorio {
 
@@ -11,12 +12,16 @@ public class Relatorio {
     private Integer codigoComprovante;
     private LocalDateTime entrada;
     private LocalDateTime saida;
-    private Float totalHoras;
+    private LocalTime totalHoras;
     private BigDecimal valorPago;
 
-    public Relatorio() {
+    public LocalTime getTotalHoras() {
+        return totalHoras;
     }
 
+    public void setTotalHoras(LocalTime totalHoras) {
+        this.totalHoras = totalHoras;
+    }
 
     public Integer getCodigoTicket() {
         return codigoTicket;
@@ -46,8 +51,8 @@ public class Relatorio {
         return entrada;
     }
 
-   public void setEntrada(LocalDateTime entrada) {
-       this.entrada = entrada;
+    public void setEntrada(LocalDateTime entrada) {
+        this.entrada = entrada;
     }
 
     public LocalDateTime getSaida() {
@@ -58,6 +63,8 @@ public class Relatorio {
         this.saida = saida;
     }
 
+
+
     public BigDecimal getValorPago() {
         return valorPago;
     }
@@ -66,10 +73,21 @@ public class Relatorio {
         this.valorPago = valorPago;
     }
 
-
-    public void setEntrada(Date date) {
+    @Override
+    public String toString() {
+        return "Relatorio{" +
+                "codigoTicket=" + codigoTicket +
+                ", codigoVaga='" + codigoVaga + '\'' +
+                ", codigoComprovante=" + codigoComprovante +
+                ", entrada=" + entrada +
+                ", saida=" + saida +
+                ", totalHoras=" + totalHoras +
+                ", valorPago=" + valorPago +
+                '}';
     }
 
-    public void setSaida(Date date) {
+    public Relatorio() {
     }
+
+
 }

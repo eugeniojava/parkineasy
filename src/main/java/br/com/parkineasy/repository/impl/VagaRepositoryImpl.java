@@ -18,7 +18,7 @@ public class VagaRepositoryImpl implements VagaRepository {
         VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
 
         vagaRepository.listaTodas();
-        vagaRepository.listaPorTipo(3);
+        vagaRepository.listaPorTipo(1);
     }
 
     @Override

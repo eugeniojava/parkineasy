@@ -12,6 +12,6 @@ public interface GerenteRepository {
     List<Gerente> ConsultaGerente(String userName, String senha);
 
 
-    List<Relatorio>GeralRelatorio(LocalDateTime data);
+    List<Relatorio>GeralRelatorio(LocalDate data);
 
 }
