@@ -59,4 +59,6 @@ public class EmitirTicketController {
         App.nextScene("Inserção de Ticket", 520, 400, url, event);
     }
 
+
+
 }

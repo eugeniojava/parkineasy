@@ -1,15 +1,22 @@
 package br.com.parkineasy.view.controller;
 
 import br.com.parkineasy.App;
+import br.com.parkineasy.view.fxml.ModelTableConsultarVagas;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArrayBase;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ResourceBundle;
 
-public class GerenteController {
+public class GerenteController implements Initializable{
 
     @FXML private TextField tfUsernameLoginGerente;
     @FXML private TextField tfPasswordLoginGerente;
@@ -114,5 +121,33 @@ public class GerenteController {
         }
     }
 
+
+    @FXML private TableView<ModelTableConsultarVagas> tableConsultarVagas;
+    @FXML private TableColumn<ModelTableConsultarVagas, String> colAConsultarVagas;
+    @FXML private TableColumn<ModelTableConsultarVagas, String> colBConsultarVagas;
+    @FXML private TableColumn<ModelTableConsultarVagas, String> colCConsultarVagas;
+
+    ObservableList<ModelTableConsultarVagas> oblist = FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+
+        ModelTableConsultarVagas m1 = new ModelTableConsultarVagas("A1","COMUM",0);
+        ModelTableConsultarVagas m2 = new ModelTableConsultarVagas("A2","COMUM",0);
+        ModelTableConsultarVagas m3 = new ModelTableConsultarVagas("A3","COMUM",0);
+        ModelTableConsultarVagas m4 = new ModelTableConsultarVagas("A4","COMUM",0);
+        ModelTableConsultarVagas m5 = new ModelTableConsultarVagas("A5","COMUM",0);
+        ModelTableConsultarVagas m6 = new ModelTableConsultarVagas("A6","COMUM",0);
+        ModelTableConsultarVagas m7 = new ModelTableConsultarVagas("A7","COMUM",0);
+        ModelTableConsultarVagas m8 = new ModelTableConsultarVagas("A8","COMUM",0);
+        ModelTableConsultarVagas m9 = new ModelTableConsultarVagas("A9","COMUM",0);
+        ModelTableConsultarVagas m10 = new ModelTableConsultarVagas("A10","COMUM",0);
+        oblist.addAll(m1,m2,m3,m4,m5,m6,m7,m8,m9,m10);
+        colAConsultarVagas.setCellValueFactory(new PropertyValueFactory<>("A"));
+        colBConsultarVagas.setCellValueFactory(new PropertyValueFactory<>("B"));
+        colCConsultarVagas.setCellValueFactory(new PropertyValueFactory<>("C"));
+
+        tableConsultarVagas.setItems(oblist);
+    }
 
 }
