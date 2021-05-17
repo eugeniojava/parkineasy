@@ -17,7 +17,7 @@ public class VagaRepositoryImpl implements VagaRepository {
     public static void main(String[] args) {
         VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
 
-        vagaRepository.listaTodas();
+        //vagaRepository.listaTodas();
         vagaRepository.listaPorTipo(1);
     }
 
@@ -45,7 +45,7 @@ public class VagaRepositoryImpl implements VagaRepository {
 
     @Override
     public List<Vaga> listaPorTipo(Integer tipo) {
-        ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga WHERE tip_vaga =" + tipo);
+        ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga WHERE tip_vaga ='" + tipo+"' and sit_vaga = 0");
         List<Vaga> vagas = new ArrayList<>();
         try {
 
