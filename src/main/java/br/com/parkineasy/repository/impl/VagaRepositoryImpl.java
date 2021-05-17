@@ -17,7 +17,7 @@ public class VagaRepositoryImpl implements VagaRepository {
     public static void main(String[] args) {
         VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
 
-        //vagaRepository.listaTodas();
+        vagaRepository.listaTodas();
         vagaRepository.listaPorTipo(1);
     }
 

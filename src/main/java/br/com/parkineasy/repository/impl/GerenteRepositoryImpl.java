@@ -19,21 +19,20 @@ public class GerenteRepositoryImpl implements GerenteRepository {
     String name, passw;
 
     @Override
-    public List<Gerente> ConsultaGerente(String userName, String senha) {
-        ResultSet resultSet = consulta.executaConsulta("select *from gerente where username_gerente ='" + userName +
-                "'and password_gerente ='" + senha + "'");
+    public Boolean ConsultaGerente(String userName, String senha) {
+        ResultSet resultSet = consulta.executaConsulta("select *from gerente where username_gerente ='"+userName+"'and password_gerente ='"+senha+"'");
         List<Gerente> gerente = new ArrayList<>();
         try {
             if (resultSet.next()) {
                 name = resultSet.getString(3);
                 passw = resultSet.getString(4);
-                System.out.println(name + passw);
+                return (true);
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return null;
+        return (false);
     }
 
     @Override
@@ -69,9 +68,9 @@ public class GerenteRepositoryImpl implements GerenteRepository {
         String nome = "Bruno";
         String pass = "ABC123";
         LocalDate data = LocalDate.of(2021,05,16);
-        System.out.println(data);
-        gerenteRepository.ConsultaGerente(nome,pass);
-        gerenteRepository.GeralRelatorio(data);
+        //gerenteRepository.ConsultaGerente(nome,pass);
+        System.out.println(gerenteRepository.ConsultaGerente(nome,pass));
+        //gerenteRepository.GeralRelatorio(data);
     }
 
 }

@@ -9,4 +9,8 @@ public interface VagaRepository {
     List<Vaga> listaTodas();
 
     List<Vaga> listaPorTipo(Integer tipo);
+
+    //Integer Buscaticket(Integer ticket);
+
+    //Integer BuscaComprovante(Integer comprovante);
 }

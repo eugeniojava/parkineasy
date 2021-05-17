@@ -1,4 +1,6 @@
 package br.com.parkineasy.repository;
 
-public class ReservaRepository {
+public interface ReservaRepository {
+
+    Boolean cadastraReserva(String codigoVaga);
 }

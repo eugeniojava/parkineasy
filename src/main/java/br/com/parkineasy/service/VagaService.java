@@ -1,18 +1,10 @@
 //package br.com.parkineasy.service;
 //
-//import br.com.parkineasy.repository.Consulta;
+//import br.com.parkineasy.model.Vaga;
 //
-//import java.sql.ResultSet;
+//import java.util.List;
 //
-//public class VagaService {
+//public interface VagaService {
 //
-//    private final Consulta consulta = new Consulta();
-//
-////    public List<Vaga> listarTodasVagas() {
-////        ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga");
-////
-////        while (resultSet.next()) {
-////
-////        }
-////    }
-////}
+//    List<Vaga> listaTodas();
+//}
