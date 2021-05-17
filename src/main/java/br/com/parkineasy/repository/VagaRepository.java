@@ -1,8 +1,12 @@
 package br.com.parkineasy.repository;
 
+import br.com.parkineasy.model.Vaga;
+
+import java.util.List;
+
 public interface VagaRepository {
 
     List<Vaga> listaTodas();
 
-    Lista<Vaga> listaPorTipo(String tipo);
+    List<Vaga> listaPorTipo(Integer tipo);
 }
