@@ -30,4 +30,6 @@ public class PagamentoServiceImpl implements PagamentoService {
 
         return pagamentoRepository.salvar(codigoTicket, metodoPagamento, valorTotal);
     }
+
 }
+

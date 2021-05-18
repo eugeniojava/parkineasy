@@ -8,4 +8,5 @@ public interface ReservaRepository {
     Boolean salvar(String codigoVaga);
 
     Entrada recuperarUltimaEntrada();
+
 }
