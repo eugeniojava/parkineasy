@@ -8,7 +8,7 @@ public class Consulta {
 
     // retorna o numero de linhas afetadas
     // executa insert, update e delete
-    public Integer executaAtualizacao(String sql) {
+    public Integer executarAtualizacao(String sql) {
         Statement statement = Conexao.getStatement();
 
         try {
@@ -22,7 +22,7 @@ public class Consulta {
 
     // retorna um objeto ResultSet
     // executa select
-    public ResultSet executaConsulta(String sql) {
+    public ResultSet executarConsulta(String sql) {
         Statement statement = Conexao.getStatement();
 
         try {

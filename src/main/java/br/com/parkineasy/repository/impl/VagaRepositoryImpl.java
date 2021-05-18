@@ -14,16 +14,9 @@ public class VagaRepositoryImpl implements VagaRepository {
 
     private final Consulta consulta = new Consulta();
 
-    public static void main(String[] args) {
-        VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
-
-        vagaRepository.listaTodas();
-        vagaRepository.listaPorTipo(1);
-    }
-
     @Override
-    public List<Vaga> listaTodas() {
-        ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga");
+    public List<Vaga> recuperarTodas() {
+        ResultSet resultSet = consulta.executarConsulta("SELECT * FROM vaga");
         List<Vaga> vagas = new ArrayList<>();
 
         try {
@@ -36,16 +29,19 @@ public class VagaRepositoryImpl implements VagaRepository {
 
                 vagas.add(vaga);
             }
-            vagas.forEach(System.out::println);
+
+            return vagas;
         } catch (SQLException sqlException) {
             System.err.println(sqlException.getMessage());
+
+            return null;
         }
-        return null;
     }
 
     @Override
-    public List<Vaga> listaPorTipo(Integer tipo) {
-        ResultSet resultSet = consulta.executaConsulta("SELECT * FROM vaga WHERE tip_vaga ='" + tipo+"' and sit_vaga = 0");
+    public List<Vaga> recuperarTodasPorTipoESituacaoLivre(Integer tipo) {
+        ResultSet resultSet = consulta.executarConsulta(
+                "SELECT * FROM vaga WHERE tip_vaga ='" + tipo + "' and sit_vaga = 0");
         List<Vaga> vagas = new ArrayList<>();
         try {
 
@@ -58,10 +54,12 @@ public class VagaRepositoryImpl implements VagaRepository {
 
                 vagas.add(vaga);
             }
-            vagas.forEach(System.out::println);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+
+            return vagas;
+        } catch (SQLException sqlException) {
+            System.err.println(sqlException.getMessage());
+
+            return null;
         }
-        return null;
     }
 }

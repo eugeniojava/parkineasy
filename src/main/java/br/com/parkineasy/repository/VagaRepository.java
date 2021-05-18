@@ -6,11 +6,7 @@ import java.util.List;
 
 public interface VagaRepository {
 
-    List<Vaga> listaTodas();
+    List<Vaga> recuperarTodas();
 
-    List<Vaga> listaPorTipo(Integer tipo);
-
-    //Integer Buscaticket(Integer ticket);
-
-    //Integer BuscaComprovante(Integer comprovante);
+    List<Vaga> recuperarTodasPorTipoESituacaoLivre(Integer tipo);
 }

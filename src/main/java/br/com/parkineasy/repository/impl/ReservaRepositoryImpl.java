@@ -11,24 +11,24 @@ public class ReservaRepositoryImpl implements ReservaRepository {
     private final Consulta consulta = new Consulta();
 
     @Override
-    public Boolean cadastraReserva(String codigoVaga) {
-        LocalDateTime agora = LocalDateTime.now();
+    public Boolean salvar(String codigoVaga) {
         DateTimeFormatter dataHoraFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String dataHoraFormatada = agora.format(dataHoraFormato);
-        System.out.println(dataHoraFormatada);
-        System.out.println(codigoVaga);
-        Integer resultSet1 = consulta.executaAtualizacao("insert into reserva (data_hora_entrada) values ('" + dataHoraFormatada + "')");
-        Integer resultSet2 = consulta.executaAtualizacao("insert into pagamento() values();");
-        Integer resultSet3 = consulta.executaAtualizacao("insert into uso(id_reserva,id_vaga,data_hora_entrada) select id_reserva,\""+codigoVaga+"\",data_hora_entrada from reserva where data_hora_entrada = '"+dataHoraFormatada+"';");
-        Integer resultSet4 = consulta.executaAtualizacao("update uso set id_pagamento = id_reserva  where data_hora_entrada = '"+dataHoraFormatada+"' ;");
-        Integer resultSet5 = consulta.executaAtualizacao("update vaga set sit_vaga = 1 where id_vaga = \""+codigoVaga+"\";");
-        //System.out.println(resultSet1);
+        String dataHoraFormatada = LocalDateTime.now().format(dataHoraFormato);
+        Integer consultasASeremRealizadas = 5;
+        Integer atualizacoesComSucesso = 0;
 
-        return (resultSet1 + resultSet2 + resultSet3 + resultSet4 + resultSet5) == 5 ? true : false;
-    }
+        atualizacoesComSucesso = consulta.executarAtualizacao(
+                "INSERT INTO reserva(data_hora_entrada) VALUES ('" + dataHoraFormatada + "')");
+        atualizacoesComSucesso += consulta.executarAtualizacao("INSERT INTO pagamento() VALUES ()");
+        atualizacoesComSucesso += consulta.executarAtualizacao(
+                "INSERT INTO uso(id_reserva, id_vaga, data_hora_entrada)" +
+                        " SELECT id_reserva, \"" + codigoVaga + "\", data_hora_entrada FROM reserva" +
+                        " WHERE data_hora_entrada = '" + dataHoraFormatada + "'");
+        atualizacoesComSucesso += consulta.executarAtualizacao(
+                "UPDATE uso SET id_pagamento = id_reserva WHERE data_hora_entrada = '" + dataHoraFormatada + "'");
+        atualizacoesComSucesso += consulta.executarAtualizacao(
+                "UPDATE vaga SET sit_vaga = 1 WHERE id_vaga = \"" + codigoVaga + "\"");
 
-    public static void main(String[] args) {
-        var repository = new ReservaRepositoryImpl();
-        repository.cadastraReserva("C08");
+        return atualizacoesComSucesso.equals(consultasASeremRealizadas);
     }
 }

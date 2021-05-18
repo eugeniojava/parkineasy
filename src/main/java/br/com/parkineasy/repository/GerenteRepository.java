@@ -2,16 +2,13 @@ package br.com.parkineasy.repository;
 
 import br.com.parkineasy.model.Relatorio;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
 public interface GerenteRepository {
 
-    Boolean ConsultaGerente(String userName, String senha);
+    Boolean validarGerente(String username, String senha) throws SQLException;
 
-
-    List<Relatorio>GeralRelatorio(LocalDate data);
-
-   // String reImprimirTicket(String codigoVaga);
-
+    List<Relatorio> gerarRelatorio(LocalDate data);
 }
