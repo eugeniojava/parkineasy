@@ -1,6 +1,8 @@
 package br.com.parkineasy.view.controller;
 
 import br.com.parkineasy.App;
+import br.com.parkineasy.model.Gerente;
+import br.com.parkineasy.repository.impl.GerenteRepositoryImpl;
 import br.com.parkineasy.view.fxml.ModelTableConsultarVagas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +28,8 @@ import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
 public class GerenteController{
 
-    ObservableList<ModelTableConsultarVagas> oblist = FXCollections.observableArrayList();
+//    GerenteRepositoryImpl gerenteRepository = new GerenteRepositoryImpl();
+
     @FXML
     private TextField tfUsernameLoginGerente;
     @FXML
@@ -47,6 +50,7 @@ public class GerenteController{
         if (tfUsernameLoginGerente.getText().equals("") || tfPasswordLoginGerente.getText().equals("")) {
             App.infoBox("Todos os campos devem ser preenchidos!", "Login de Gerente", null);
         } else {
+//            gerenteRepository.ConsultaGerente(tfUsernameLoginGerente.getText(), tfPasswordLoginGerente.getText());
             App.infoBox("Gerente Autenticado Com Sucesso!", "Login de Gerente", null);
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
                     "\\fxml\\GerenteInicial.fxml").toUri().toURL();
@@ -91,6 +95,8 @@ public class GerenteController{
                 if (dpDataGerarRelatorio.getEditor().getText().equals("")) {
                     App.infoBox("A Data Alvo Não Pode Ser Nula!", "Geração de Relatório", null);
                 } else {
+                    System.out.println(dpDataGerarRelatorio.getValue());
+                    GerenteRelatorioController.dateReceiver(dpDataGerarRelatorio.getValue());
                     App.infoBox("Relatório Gerado Com Sucesso!", "Geração de Relatório", null);
                     URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
                             "\\view\\fxml\\EmitirRelatorio.fxml").toUri().toURL();
@@ -115,13 +121,13 @@ public class GerenteController{
         }
     }
 
-//    public void pressButtonConsultarVagas(ActionEvent event) throws MalformedURLException {
-//        if ("btVoltarPainelVagas".equals(((Control) event.getSource()).getId())) {
-//            URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
-//                    "\\fxml\\GerenteInicial.fxml").toUri().toURL();
-//            App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
-//        }
-//    }
+    public void pressButtonConsultarVagas(ActionEvent event) throws MalformedURLException {
+        if ("btVoltarPainelVagas".equals(((Control) event.getSource()).getId())) {
+            URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
+                    "\\fxml\\GerenteInicial.fxml").toUri().toURL();
+            App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
+        }
+    }
 
     public void pressButtonReimprimirTicket(ActionEvent event) throws MalformedURLException {
         switch (((Control) event.getSource()).getId()) {

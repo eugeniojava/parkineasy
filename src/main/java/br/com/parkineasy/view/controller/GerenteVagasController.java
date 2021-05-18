@@ -1,10 +1,10 @@
 package br.com.parkineasy.view.controller;
 
 import br.com.parkineasy.App;
-import br.com.parkineasy.view.fxml.ModelTableConsultarVagas;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import br.com.parkineasy.model.Vaga;
+import br.com.parkineasy.model.enums.TipoVaga;
+import br.com.parkineasy.repository.impl.VagaRepositoryImpl;
+import br.com.parkineasy.view.model.VagaTableRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,71 +15,52 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
 public class GerenteVagasController implements Initializable{
+
+    VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
+
+
+
     @FXML
-    private TableView<ModelTableConsultarVagas> tableConsultarVagas;
+    private TableView<VagaTableRow> tableConsultarVagas;
     @FXML
-    private TableColumn<ModelTableConsultarVagas, String> colAConsultarVagas;
+    private TableColumn<VagaTableRow, String> colAConsultarVagas;
     @FXML
-    private TableColumn<ModelTableConsultarVagas, String> colBConsultarVagas;
+    private TableColumn<VagaTableRow, String> colBConsultarVagas;
     @FXML
-    private TableColumn<ModelTableConsultarVagas, String> colCConsultarVagas;
+    private TableColumn<VagaTableRow, TipoVaga> colCConsultarVagas;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        List<Vaga> vagas = vagaRepository.listaTodas();
+        List<VagaTableRow> vagaTableRowList = new ArrayList<>();
+        vagas.forEach(v -> vagaTableRowList.add(new VagaTableRow(v)));
+
+        ObservableList<VagaTableRow> oblist = FXCollections.observableArrayList(vagaTableRowList);
+
         colAConsultarVagas.setCellValueFactory(
-                new PropertyValueFactory<>("id_vaga"));
+                new PropertyValueFactory<>("codigoVaga"));
         colBConsultarVagas.setCellValueFactory(
-                new PropertyValueFactory<>("sit_vaga"));
+                new PropertyValueFactory<>("situacaoVaga"));
         colCConsultarVagas.setCellValueFactory(
-                new PropertyValueFactory<>("tip_vaga"));
+                new PropertyValueFactory<>("tipoVaga"));
 
-        tableConsultarVagas.setItems(listaDeVagas());
+        tableConsultarVagas.setItems(oblist);
+
     }
 
 
-    private ObservableList<ModelTableConsultarVagas> listaDeVagas() {
-        return FXCollections.observableArrayList(
-                new ModelTableConsultarVagas("A01", 0, "DEFICIENTE"),
-                new ModelTableConsultarVagas("A02", 0, "IDOSO"),
-                new ModelTableConsultarVagas("A03", 1, "COMUM"),
-                new ModelTableConsultarVagas("A04", 1, "COMUM"),
-                new ModelTableConsultarVagas("A05", 0, "COMUM"),
-                new ModelTableConsultarVagas("A06", 0, "COMUM"),
-                new ModelTableConsultarVagas("A07", 0, "COMUM"),
-                new ModelTableConsultarVagas("A08", 1, "COMUM"),
-                new ModelTableConsultarVagas("A09", 1, "COMUM"),
-                new ModelTableConsultarVagas("A10", 0, "COMUM"),
-                new ModelTableConsultarVagas("B01", 0, "DEFICIENTE"),
-                new ModelTableConsultarVagas("B02", 0, "IDOSO"),
-                new ModelTableConsultarVagas("B03", 1, "COMUM"),
-                new ModelTableConsultarVagas("B04", 1, "COMUM"),
-                new ModelTableConsultarVagas("B05", 0, "COMUM"),
-                new ModelTableConsultarVagas("B06", 0, "COMUM"),
-                new ModelTableConsultarVagas("B07", 0, "COMUM"),
-                new ModelTableConsultarVagas("B08", 1, "COMUM"),
-                new ModelTableConsultarVagas("B09", 1, "COMUM"),
-                new ModelTableConsultarVagas("B10", 0, "COMUM"),
-                new ModelTableConsultarVagas("C01", 0, "DEFICIENTE"),
-                new ModelTableConsultarVagas("C02", 0, "IDOSO"),
-                new ModelTableConsultarVagas("C03", 1, "COMUM"),
-                new ModelTableConsultarVagas("C04", 1, "COMUM"),
-                new ModelTableConsultarVagas("C05", 0, "COMUM"),
-                new ModelTableConsultarVagas("C06", 0, "COMUM"),
-                new ModelTableConsultarVagas("C07", 0, "COMUM"),
-                new ModelTableConsultarVagas("C08", 1, "COMUM"),
-                new ModelTableConsultarVagas("C09", 1, "COMUM"),
-                new ModelTableConsultarVagas("C10", 0, "COMUM")
-
-        );
-    }
     public void pressButtonConsultarVagas(ActionEvent event) throws MalformedURLException {
         if ("btVoltarPainelVagas".equals(((Control) event.getSource()).getId())) {
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
