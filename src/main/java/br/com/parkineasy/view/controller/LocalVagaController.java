@@ -3,6 +3,8 @@ package br.com.parkineasy.view.controller;
 import br.com.parkineasy.App;
 import br.com.parkineasy.model.Vaga;
 import br.com.parkineasy.model.enums.TipoVaga;
+import br.com.parkineasy.repository.ReservaRepository;
+import br.com.parkineasy.repository.impl.ReservaRepositoryImpl;
 import br.com.parkineasy.repository.impl.VagaRepositoryImpl;
 import br.com.parkineasy.view.model.VagaTableRow;
 import javafx.collections.FXCollections;
@@ -33,6 +35,8 @@ import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 public class LocalVagaController implements Initializable{
 
     static VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
+
+    ReservaRepositoryImpl reservaRepository = new ReservaRepositoryImpl();
 
     private static Integer tipo;
     private static String codigo;
@@ -72,7 +76,7 @@ public class LocalVagaController implements Initializable{
             @Override
             public void handle(MouseEvent mouseEvent) {
                 System.out.println(codigo = tableLocalVaga.getSelectionModel().getSelectedItem().getCodigoVaga());
-                //retornar código da vaga
+                reservaRepository.salvar(codigo);
             }});
 
         }
