@@ -66,5 +66,11 @@ public class GerenteRepositoryImpl implements GerenteRepository {
             return null;
         }
     }
+
+    public static void main(String[] args) {
+        GerenteRepositoryImpl gerente = new GerenteRepositoryImpl();
+        gerente.gerarRelatorio(YearMonth.of(2021,5)).forEach(System.out::println);
+
+    }
 }
 

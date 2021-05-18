@@ -33,9 +33,4 @@ public class UsoRepositoryImpl implements UsoRepository {
             return null;
         }
     }
-
-    public static void main(String[] args) {
-        UsoRepositoryImpl usoRepository = new UsoRepositoryImpl();
-        System.out.println(usoRepository.recuperarHorasDeUso(42));
-    }
 }

@@ -1,23 +1,33 @@
-//package br.com.parkineasy.service.impl;
-//
-//import br.com.parkineasy.service.PagamentoService;
-//
-//import java.math.BigDecimal;
-//
-//public class PagamentoServiceImpl implements PagamentoService {
-//
-//    @Override
-//    public BigDecimal calcularValorPagamento(String codigoTicket) {
-//        // 1. buscar o horario de entrada de acordo com o ticket
-//        // 2. calcular o valor do pagamento referente a diferença por hora
-//
-//
-//    }
-//    //    public Float CalcularValor(String datadopagamento, Integer codigoTicket) {
-////        float valortotal = 10;
-////        ResultSet resultSet = consulta.executarConsulta("select timediff('" + datadopagamento + "',uso" +
-////                ".data_hora_entrada) from uso where id_reserva = " + codigoTicket + ";");
-////        System.out.println(resultSet);
-////        return valortotal;
-////    }
-//}
+package br.com.parkineasy.service.impl;
+
+import br.com.parkineasy.repository.PagamentoRepository;
+import br.com.parkineasy.repository.UsoRepository;
+import br.com.parkineasy.repository.impl.PagamentoRepositoryImpl;
+import br.com.parkineasy.repository.impl.UsoRepositoryImpl;
+import br.com.parkineasy.service.PagamentoService;
+
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.time.LocalTime;
+
+public class PagamentoServiceImpl implements PagamentoService {
+
+    private final UsoRepository usoRepository = new UsoRepositoryImpl();
+    private final PagamentoRepository pagamentoRepository = new PagamentoRepositoryImpl();
+    private final BigDecimal VALOR_HORA = new BigDecimal("5.0");
+    private final MathContext PRECISAO = new MathContext(4);
+
+    @Override
+    public BigDecimal calcularValorPagamento(Integer codigoTicket) {
+        LocalTime horasDeUso = usoRepository.recuperarHorasDeUso(codigoTicket);
+        double horas = horasDeUso.getHour() + horasDeUso.getMinute() / 60.0;
+
+        return BigDecimal.valueOf(horas).multiply(VALOR_HORA).round(PRECISAO);
+    }
+
+    public Boolean efetuarPagamento(Integer codigoTicket, Integer metodoPagamento) {
+        BigDecimal valorTotal = calcularValorPagamento(codigoTicket);
+
+        return pagamentoRepository.salvar(codigoTicket, metodoPagamento, valorTotal);
+    }
+}
