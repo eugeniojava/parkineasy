@@ -21,7 +21,6 @@ public class PagamentoServiceImpl implements PagamentoService {
     public BigDecimal calcularValorPagamento(Integer codigoTicket) {
         LocalTime horasDeUso = usoRepository.recuperarHorasDeUso(codigoTicket);
         double horas = horasDeUso.getHour() + horasDeUso.getMinute() / 60.0;
-
         return BigDecimal.valueOf(horas).multiply(VALOR_HORA).round(PRECISAO);
     }
 

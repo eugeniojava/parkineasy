@@ -38,19 +38,26 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
         return consultasComSucesso.equals(consultasASeremRealizadas);
     }
 
-    public ComprovantePagamento mostraComprovante(Integer codigoTicket) {
-        ResultSet resultSet = consulta.executarConsulta("select comprovante_pagamento from pagamento " +
-                "where id_pagamento =" + codigoTicket);
-
-        try {
-            if (resultSet.next()) {
+    public ComprovantePagamento mostrarComprovante(Integer codigoTicket) {
+        DateTimeFormatter dataHoraFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        ResultSet resultSet = consulta.executarConsulta("select pagamento.data_hora_pagamento,comprovante_pagamento," +
+                "valor_pago from pagamento,uso where pagamento.id_pagamento = "+codigoTicket+" and uso.id_reserva = "+codigoTicket);
+        try{
+            if(resultSet.next()){
                 ComprovantePagamento comprovante = new ComprovantePagamento();
-                comprovante.setComprovantePagamento(resultSet.getInt("comprovante_pagamento"));
+                comprovante.setCodigoTicket(resultSet.getInt("comprovante_pagamento"));
+                comprovante.setValorPago(resultSet.getBigDecimal("valor_pago"));
+                comprovante.setDataHoraSaida(
+                        LocalDateTime.parse(resultSet.getString("data_hora_pagamento"), dataHoraFormato));
+
                 return comprovante;
+
             }
-        } catch (SQLException sqlException) {
+        }catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
+
+
         return null;
     }
 
@@ -65,11 +72,16 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
                                 "(SELECT id_vaga FROM uso WHERE id_pagamento = (SELECT id_pagamento FROM pagamento " +
                                 "WHERE comprovante_pagamento = " + comprovanteSaida + "))");
 
-                return result == 1;
+                result += consulta.executarAtualizacao("UPDATE uso set data_hora_saida = now() where" +
+                                                            " id_pagamento = (select id_pagamento from pagamento " +
+                                                                     " where comprovante_pagamento = "+comprovanteSaida+");");
+
+                return result == 2;
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
         return false;
     }
+
 }
