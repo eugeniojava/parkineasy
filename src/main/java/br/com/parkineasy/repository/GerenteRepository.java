@@ -1,4 +1,3 @@
-
 package br.com.parkineasy.repository;
 
 import br.com.parkineasy.model.Entrada;

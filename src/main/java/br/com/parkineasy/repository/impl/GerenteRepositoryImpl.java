@@ -17,6 +17,13 @@ public class GerenteRepositoryImpl implements GerenteRepository {
 
     private final Consulta consulta = new Consulta();
 
+    public static void main(String[] args) {
+        GerenteRepositoryImpl gerente = new GerenteRepositoryImpl();
+        gerente.recuperarPorCodigoVaga("A05");
+
+
+    }
+
     @Override
     public Boolean validarGerente(String username, String senha) {
         ResultSet resultSet = consulta.executarConsulta(
@@ -67,17 +74,18 @@ public class GerenteRepositoryImpl implements GerenteRepository {
             return null;
         }
     }
+
     @Override
-    public Entrada recuperarPorCodigoVaga (String codigoVaga){
+    public Entrada recuperarPorCodigoVaga(String codigoVaga) {
         DateTimeFormatter dataHoraFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         ResultSet resultSet = consulta.executarConsulta("select id_reserva,data_hora_entrada,id_vaga " +
-                                "FROM uso  where id_vaga = \""+codigoVaga+"\" and data_hora_pagamento IS NULL;");
+                "FROM uso  where id_vaga = \"" + codigoVaga + "\" and data_hora_pagamento IS NULL;");
 
         try {
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 ResultSet resultSetEntrada = consulta.executarConsulta("select id_reserva,data_hora_entrada,id_vaga " +
-                        "FROM uso  where id_vaga = \""+codigoVaga+"\" and data_hora_pagamento IS NULL;");
-                if(resultSetEntrada.next()){
+                        "FROM uso  where id_vaga = \"" + codigoVaga + "\" and data_hora_pagamento IS NULL;");
+                if (resultSetEntrada.next()) {
                     Entrada entrada = new Entrada();
 
                     entrada.setCodigoTicket(resultSetEntrada.getInt("id_reserva"));
@@ -95,12 +103,5 @@ public class GerenteRepositoryImpl implements GerenteRepository {
             sqlException.printStackTrace();
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        GerenteRepositoryImpl gerente = new GerenteRepositoryImpl();
-        gerente.recuperarPorCodigoVaga("A05");
-
-
     }
 }

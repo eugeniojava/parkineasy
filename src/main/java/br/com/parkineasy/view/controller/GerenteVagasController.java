@@ -15,7 +15,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -25,10 +24,9 @@ import java.util.ResourceBundle;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
-public class GerenteVagasController implements Initializable{
+public class GerenteVagasController implements Initializable {
 
     VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
-
 
 
     @FXML

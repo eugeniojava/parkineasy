@@ -13,6 +13,11 @@ public class ReservaRepositoryImpl implements ReservaRepository {
 
     private final Consulta consulta = new Consulta();
 
+    public static void main(String[] args) {
+        ReservaRepositoryImpl reserva = new ReservaRepositoryImpl();
+
+    }
+
     @Override
     public Boolean salvar(String codigoVaga) {
         DateTimeFormatter dataHoraFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -62,12 +67,6 @@ public class ReservaRepositoryImpl implements ReservaRepository {
 
             return null;
         }
-    }
-
-
-    public static void main(String[] args) {
-        ReservaRepositoryImpl reserva = new ReservaRepositoryImpl();
-
     }
 }
 

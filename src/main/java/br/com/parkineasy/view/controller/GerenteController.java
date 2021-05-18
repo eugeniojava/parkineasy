@@ -15,7 +15,7 @@ import java.time.YearMonth;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
-public class GerenteController{
+public class GerenteController {
 
     GerenteRepositoryImpl gerenteRepository = new GerenteRepositoryImpl();
 
@@ -39,19 +39,20 @@ public class GerenteController{
         if (tfUsernameLoginGerente.getText().equals("") || tfPasswordLoginGerente.getText().equals("")) {
             App.infoBox("Todos os campos devem ser preenchidos!", "Login de Gerente", null);
 
-        } else if(gerenteRepository.validarGerente(tfUsernameLoginGerente.getText(), tfPasswordLoginGerente.getText())){
-                App.infoBox("Gerente Autenticado Com Sucesso!", "Login de Gerente", null);
-                URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
-                        "\\fxml\\GerenteInicial.fxml").toUri().toURL();
-                App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
-        }else{
+        } else if (gerenteRepository.validarGerente(tfUsernameLoginGerente.getText(),
+                tfPasswordLoginGerente.getText())) {
+            App.infoBox("Gerente Autenticado Com Sucesso!", "Login de Gerente", null);
+            URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
+                    "\\fxml\\GerenteInicial.fxml").toUri().toURL();
+            App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
+        } else {
             App.infoBox("O Usuário ou Senha Inseridos Estão Incorretos!", "Login de Gerente", null);
             tfUsernameLoginGerente.clear();
             tfPasswordLoginGerente.clear();
             tfUsernameLoginGerente.requestFocus();
         }
 
-        }
+    }
 
     public void pressButtonMenuGerente(ActionEvent event) throws MalformedURLException {
         switch (((Control) event.getSource()).getId()) {
@@ -167,8 +168,6 @@ public class GerenteController{
 //                new ModelTableConsultarVagas("C5", "DEFICIENTE", "1")
 //        );
 //    }
-
-
 
 
 }
