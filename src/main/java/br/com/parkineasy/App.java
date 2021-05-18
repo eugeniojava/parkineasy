@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.regex.Pattern;
 
 /**
  * JavaFX App
@@ -18,6 +19,23 @@ import java.nio.file.Paths;
 public class App extends Application {
 
     public static final String PARKINEASY_FOLDER = "C:\\Users\\MARCOS\\Desktop\\parkineasy";
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    public void validaInput(String input) {
+        String regex = "^[0-9]+$";
+
+        if (Pattern.matches(regex, input)) {
+
+        }
+    }
+
+    @Override
+    public void start(Stage stage) {
+        var javaVersion = SystemInfo.javaVersion();
+        var javafxVersion = SystemInfo.javafxVersion();
 
     public static void nextScene(String name, int height, int width, URL url, ActionEvent event) {
         Parent root;
@@ -57,5 +75,4 @@ public class App extends Application {
         stage.setResizable(false);
         stage.show();
     }
-
 }
