@@ -6,8 +6,8 @@ import br.com.parkineasy.repository.GerenteRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +32,11 @@ public class GerenteRepositoryImpl implements GerenteRepository {
     }
 
     @Override
-    public List<Relatorio> gerarRelatorio(LocalDate data) {
+    public List<Relatorio> gerarRelatorio(YearMonth mesAno) {
+        int mes = mesAno.getMonth().getValue();
+        int ano = mesAno.getYear();
         ResultSet resultSet = consulta.executarConsulta(
-                "SELECT * FROM uso WHERE date(data_hora_saida) = '" + data + "'");
+                "SELECT * FROM uso WHERE MONTH(data_hora_saida) = " + mes + " AND YEAR(data_hora_saida) = " + ano);
         List<Relatorio> relatorios = new ArrayList<>();
         DateTimeFormatter dataHoraFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
