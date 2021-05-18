@@ -8,7 +8,8 @@ public interface PagamentoRepository {
 
     Boolean salvar(Integer codigoTicket, Integer metodoPagamento, BigDecimal valorTotal);
 
-    ComprovantePagamento mostraComprovante (Integer codigoTicket);
+    ComprovantePagamento mostraComprovante(Integer codigoTicket);
 
+    Boolean conferirComprovanteDePagamento(Integer comprovanteSaida);
 }
 
