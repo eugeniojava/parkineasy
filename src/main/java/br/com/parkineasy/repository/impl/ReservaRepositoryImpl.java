@@ -63,5 +63,11 @@ public class ReservaRepositoryImpl implements ReservaRepository {
             return null;
         }
     }
+
+
+    public static void main(String[] args) {
+        ReservaRepositoryImpl reserva = new ReservaRepositoryImpl();
+
+    }
 }
 

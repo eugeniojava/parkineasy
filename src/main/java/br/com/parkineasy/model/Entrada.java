@@ -1,6 +1,8 @@
 package br.com.parkineasy.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Entrada {
 
@@ -34,11 +36,13 @@ public class Entrada {
 
     @Override
     public String toString() {
-        return "Entrada{" +
-                "codigoTicket=" + codigoTicket +
-                ", horaEntrada=" + dataHoraEntrada +
-                ", codigoDaVaga='" + codigoVaga + '\'' +
-                '}';
+        return "Código do Ticket: " + codigoTicket +
+                "\n" +
+                "Código da Vaga: " + codigoVaga+
+                "\n" +
+                "Data de Entrada: " + LocalDate.from(dataHoraEntrada) +
+                "\n" +
+                "Horário de Entrada: " + LocalTime.from(dataHoraEntrada);
     }
 }
 

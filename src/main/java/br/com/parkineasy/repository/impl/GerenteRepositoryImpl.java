@@ -1,5 +1,6 @@
 package br.com.parkineasy.repository.impl;
 
+import br.com.parkineasy.model.Entrada;
 import br.com.parkineasy.model.Relatorio;
 import br.com.parkineasy.repository.Consulta;
 import br.com.parkineasy.repository.GerenteRepository;
@@ -66,10 +67,40 @@ public class GerenteRepositoryImpl implements GerenteRepository {
             return null;
         }
     }
+    @Override
+    public Entrada recuperarPorCodigoVaga (String codigoVaga){
+        DateTimeFormatter dataHoraFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        ResultSet resultSet = consulta.executarConsulta("select id_reserva,data_hora_entrada,id_vaga " +
+                                "FROM uso  where id_vaga = \""+codigoVaga+"\" and data_hora_pagamento IS NULL;");
+
+        try {
+            if(resultSet.next()){
+                ResultSet resultSetEntrada = consulta.executarConsulta("select id_reserva,data_hora_entrada,id_vaga " +
+                        "FROM uso  where id_vaga = \""+codigoVaga+"\" and data_hora_pagamento IS NULL;");
+                if(resultSetEntrada.next()){
+                    Entrada entrada = new Entrada();
+
+                    entrada.setCodigoTicket(resultSetEntrada.getInt("id_reserva"));
+                    entrada.setCodigoVaga(resultSetEntrada.getString("id_vaga"));
+                    entrada.setDataHoraEntrada(
+                            LocalDateTime.parse(resultSetEntrada.getString("data_hora_entrada"), dataHoraFormato));
+                    System.out.println(entrada.getCodigoTicket());
+                    System.out.println(entrada.getCodigoVaga());
+                    System.out.println(entrada.getDataHoraEntrada());
+
+                    return entrada;
+                }
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         GerenteRepositoryImpl gerente = new GerenteRepositoryImpl();
-        gerente.gerarRelatorio(YearMonth.of(2021,5)).forEach(System.out::println);
+        gerente.recuperarPorCodigoVaga("A05");
+
 
     }
 }
