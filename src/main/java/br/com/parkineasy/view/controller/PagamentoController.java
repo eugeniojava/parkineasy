@@ -1,6 +1,7 @@
 package br.com.parkineasy.view.controller;
 
 import br.com.parkineasy.App;
+import br.com.parkineasy.repository.impl.PagamentoRepositoryImpl;
 import br.com.parkineasy.service.impl.PagamentoServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,10 @@ import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 public class PagamentoController {
 
     PagamentoServiceImpl pagamentoService = new PagamentoServiceImpl();
+
+    ConfirmarSaidaImpl confirmarSaida = new ConfirmarSaidaImpl();
+
+    PagamentoRepositoryImpl pagamentoRepository = new PagamentoRepositoryImpl();
 
     private static Integer codigoTicket;
 
@@ -46,7 +51,7 @@ public class PagamentoController {
             App.infoBox("O código do ticket não pode ser vazio!", "Inserção de Ticket", null);
         } else {
             System.out.println(Integer.parseInt(tfCodigoInserirTicket.getText()));
-            this.codigoTicket = Integer.parseInt(tfCodigoInserirTicket.getText());
+            codigoTicket = Integer.parseInt(tfCodigoInserirTicket.getText());
             System.out.println(codigoTicket);
             App.infoBox("Ticket Inserido Com Sucesso!", "Inserção de Ticket", null);
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
@@ -62,7 +67,7 @@ public class PagamentoController {
             case "btCartaoMetodoPagamento":
                 App.infoBox("Pagamento Via Cartão Selecionado!", "Seleção do Método de Pagamento", null);
                 metPagamento = 1;
-                System.out.println(this.codigoTicket);
+                System.out.println(codigoTicket);
                 pagamentoService.efetuarPagamento(codigoTicket, metPagamento);
                 codigoTicket = null;
                 break;
@@ -71,6 +76,7 @@ public class PagamentoController {
                 metPagamento = 2;
                 System.out.println(codigoTicket);
                 pagamentoService.efetuarPagamento(codigoTicket, metPagamento);
+                codigoTicket = null;
                 break;
         }
         URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
@@ -96,11 +102,13 @@ public class PagamentoController {
     public void pressButtonConfirmSaida(ActionEvent event) throws MalformedURLException {
         if (tfCodigoSaida.getText().equals("")) {
             App.infoBox("O código do comprovante não pode ser vazio!", "Inserção de Comprovante", null);
-        } else {
+        } else if(confirmarSaida.ConferirComprovanteDepagamento(Integer.parseInt(tfCodigoSaida.getText()))){
             App.infoBox("Saída Confirmada - Agradecemos Pela Confiança!", "Inserção de Comprovante", null);
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TipoVaga" +
                     ".fxml").toUri().toURL();
             App.nextScene("Seleção do Tipo de Vaga", 407, 330, url, event);
+        }else{
+            App.infoBox("O Comprovante Inserido É Inválido!", "Inserção de Comprovante", null);
         }
 
     }
