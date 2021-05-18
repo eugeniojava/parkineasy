@@ -1,6 +1,7 @@
 package br.com.parkineasy.view.controller;
 
 import br.com.parkineasy.App;
+import br.com.parkineasy.service.impl.PagamentoServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
@@ -16,6 +17,10 @@ import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
 
 public class PagamentoController {
+
+    PagamentoServiceImpl pagamentoService = new PagamentoServiceImpl();
+
+    private static Integer codigoTicket;
 
     @FXML
     private TextField tfCodigoInserirTicket;
@@ -40,6 +45,9 @@ public class PagamentoController {
         if (tfCodigoInserirTicket.getText().equals("")) {
             App.infoBox("O código do ticket não pode ser vazio!", "Inserção de Ticket", null);
         } else {
+            System.out.println(Integer.parseInt(tfCodigoInserirTicket.getText()));
+            this.codigoTicket = Integer.parseInt(tfCodigoInserirTicket.getText());
+            System.out.println(codigoTicket);
             App.infoBox("Ticket Inserido Com Sucesso!", "Inserção de Ticket", null);
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
                     "\\MetodoPagamento.fxml").toUri().toURL();
@@ -49,12 +57,20 @@ public class PagamentoController {
     }
 
     public void pressButtonMetodo(ActionEvent event) throws MalformedURLException {
+        Integer metPagamento;
         switch (((Control) event.getSource()).getId()) {
             case "btCartaoMetodoPagamento":
                 App.infoBox("Pagamento Via Cartão Selecionado!", "Seleção do Método de Pagamento", null);
+                metPagamento = 1;
+                System.out.println(this.codigoTicket);
+                pagamentoService.efetuarPagamento(codigoTicket, metPagamento);
+                codigoTicket = null;
                 break;
             case "btDinheiroMetodoPagamento":
                 App.infoBox("Pagamento Em Dinheiro Selecionado!", "Seleção do Método de Pagamento", null);
+                metPagamento = 2;
+                System.out.println(codigoTicket);
+                pagamentoService.efetuarPagamento(codigoTicket, metPagamento);
                 break;
         }
         URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
