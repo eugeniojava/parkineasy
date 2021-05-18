@@ -22,6 +22,8 @@ import javafx.scene.layout.VBox;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
@@ -95,8 +97,7 @@ public class GerenteController{
                 if (dpDataGerarRelatorio.getEditor().getText().equals("")) {
                     App.infoBox("A Data Alvo Não Pode Ser Nula!", "Geração de Relatório", null);
                 } else {
-                    System.out.println(dpDataGerarRelatorio.getValue());
-                    GerenteRelatorioController.dateReceiver(dpDataGerarRelatorio.getValue());
+                    GerenteRelatorioController.dateReceiver(YearMonth.from(dpDataGerarRelatorio.getValue()));
                     App.infoBox("Relatório Gerado Com Sucesso!", "Geração de Relatório", null);
                     URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
                             "\\view\\fxml\\EmitirRelatorio.fxml").toUri().toURL();

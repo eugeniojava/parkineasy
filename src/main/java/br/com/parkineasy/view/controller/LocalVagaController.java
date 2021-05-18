@@ -61,7 +61,7 @@ public class LocalVagaController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        List<Vaga> vagas = vagaRepository.listaPorTipo(tipo);
+        List<Vaga> vagas = vagaRepository.recuperarTodasPorTipoESituacaoLivre(tipo);
         List<VagaTableRow> vagaTableRowList = new ArrayList<>();
         vagas.forEach(v -> vagaTableRowList.add(new VagaTableRow(v)));
 

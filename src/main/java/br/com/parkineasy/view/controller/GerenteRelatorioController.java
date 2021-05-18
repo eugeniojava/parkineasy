@@ -20,10 +20,7 @@ import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Month;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -34,8 +31,8 @@ public class GerenteRelatorioController implements Initializable{
 
     GerenteRepositoryImpl gerenteRepository = new GerenteRepositoryImpl();
 
-    private static LocalDate data;
-    public static void dateReceiver(LocalDate dat){
+    private static YearMonth data;
+    public static void dateReceiver(YearMonth dat){
         data = dat;
     }
 //    @FXML
@@ -65,7 +62,7 @@ public class GerenteRelatorioController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
 
 
-        ObservableList<Relatorio> oblist = FXCollections.observableArrayList(gerenteRepository.GeralRelatorio(data));
+        ObservableList<Relatorio> oblist = FXCollections.observableArrayList(gerenteRepository.gerarRelatorio(data));
 
 
         colTicketRelatorio.setCellValueFactory(

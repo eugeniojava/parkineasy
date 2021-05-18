@@ -43,7 +43,7 @@ public class GerenteVagasController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        List<Vaga> vagas = vagaRepository.listaTodas();
+        List<Vaga> vagas = vagaRepository.recuperarTodas();
         List<VagaTableRow> vagaTableRowList = new ArrayList<>();
         vagas.forEach(v -> vagaTableRowList.add(new VagaTableRow(v)));
 
