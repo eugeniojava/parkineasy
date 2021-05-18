@@ -1,22 +1,19 @@
 package br.com.parkineasy.model;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Relatorio {
 
     private Integer codigoTicket;
     private String codigoVaga;
     private Integer codigoComprovante;
-    private LocalDateTime entrada;
-    private LocalDateTime saida;
-    private Float totalHoras;
+    private LocalDateTime dataHoraEntrada;
+    private LocalDateTime dataHoraSaida;
+    private LocalDateTime dataHoraPagamento;
+    private LocalTime totalHoras;
     private BigDecimal valorPago;
-
-    public Relatorio() {
-    }
-
 
     public Integer getCodigoTicket() {
         return codigoTicket;
@@ -42,20 +39,36 @@ public class Relatorio {
         this.codigoComprovante = codigoComprovante;
     }
 
-    public LocalDateTime getEntrada() {
-        return entrada;
+    public LocalDateTime getDataHoraEntrada() {
+        return dataHoraEntrada;
     }
 
-   public void setEntrada(LocalDateTime entrada) {
-       this.entrada = entrada;
+    public void setDataHoraEntrada(LocalDateTime dataHoraEntrada) {
+        this.dataHoraEntrada = dataHoraEntrada;
     }
 
-    public LocalDateTime getSaida() {
-        return saida;
+    public LocalDateTime getDataHoraSaida() {
+        return dataHoraSaida;
     }
 
-    public void setSaida(LocalDateTime saida) {
-        this.saida = saida;
+    public void setDataHoraSaida(LocalDateTime dataHoraSaida) {
+        this.dataHoraSaida = dataHoraSaida;
+    }
+
+    public LocalDateTime getDataHoraPagamento() {
+        return dataHoraPagamento;
+    }
+
+    public void setDataHoraPagamento(LocalDateTime dataHoraPagamento) {
+        this.dataHoraPagamento = dataHoraPagamento;
+    }
+
+    public LocalTime getTotalHoras() {
+        return totalHoras;
+    }
+
+    public void setTotalHoras(LocalTime totalHoras) {
+        this.totalHoras = totalHoras;
     }
 
     public BigDecimal getValorPago() {
@@ -66,10 +79,17 @@ public class Relatorio {
         this.valorPago = valorPago;
     }
 
-
-    public void setEntrada(Date date) {
-    }
-
-    public void setSaida(Date date) {
+    @Override
+    public String toString() {
+        return "Relatorio{" +
+                "codigoTicket=" + codigoTicket +
+                ", codigoVaga='" + codigoVaga + '\'' +
+                ", codigoComprovante=" + codigoComprovante +
+                ", dataHoraEntrada=" + dataHoraEntrada +
+                ", dataHoraSaida=" + dataHoraSaida +
+                ", dataHoraPagamento=" + dataHoraPagamento +
+                ", totalHoras=" + totalHoras +
+                ", valorPago=" + valorPago +
+                '}';
     }
 }

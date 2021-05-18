@@ -1,17 +1,14 @@
 package br.com.parkineasy.repository;
 
-import br.com.parkineasy.model.Gerente;
 import br.com.parkineasy.model.Relatorio;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.SQLException;
+import java.time.YearMonth;
 import java.util.List;
 
 public interface GerenteRepository {
 
-    List<Gerente> ConsultaGerente(String userName, String senha);
+    Boolean validarGerente(String username, String senha) throws SQLException;
 
-
-    List<Relatorio>GeralRelatorio(LocalDateTime data);
-
+    List<Relatorio> gerarRelatorio(YearMonth mesAno);
 }
