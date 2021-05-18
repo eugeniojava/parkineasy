@@ -1,36 +1,23 @@
 package br.com.parkineasy.view.controller;
 
 import br.com.parkineasy.App;
-import br.com.parkineasy.model.Gerente;
 import br.com.parkineasy.repository.impl.GerenteRepositoryImpl;
-import br.com.parkineasy.view.fxml.ModelTableConsultarVagas;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
 public class GerenteController{
 
-//    GerenteRepositoryImpl gerenteRepository = new GerenteRepositoryImpl();
+    GerenteRepositoryImpl gerenteRepository = new GerenteRepositoryImpl();
 
     @FXML
     private TextField tfUsernameLoginGerente;
@@ -51,15 +38,20 @@ public class GerenteController{
     public void pressButtonConfirmLogin(ActionEvent event) throws MalformedURLException {
         if (tfUsernameLoginGerente.getText().equals("") || tfPasswordLoginGerente.getText().equals("")) {
             App.infoBox("Todos os campos devem ser preenchidos!", "Login de Gerente", null);
-        } else {
-//            gerenteRepository.ConsultaGerente(tfUsernameLoginGerente.getText(), tfPasswordLoginGerente.getText());
-            App.infoBox("Gerente Autenticado Com Sucesso!", "Login de Gerente", null);
-            URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
-                    "\\fxml\\GerenteInicial.fxml").toUri().toURL();
-            App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
+
+        } else if(gerenteRepository.validarGerente(tfUsernameLoginGerente.getText(), tfPasswordLoginGerente.getText())){
+                App.infoBox("Gerente Autenticado Com Sucesso!", "Login de Gerente", null);
+                URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
+                        "\\fxml\\GerenteInicial.fxml").toUri().toURL();
+                App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
+        }else{
+            App.infoBox("O Usuário ou Senha Inseridos Estão Incorretos!", "Login de Gerente", null);
+            tfUsernameLoginGerente.clear();
+            tfPasswordLoginGerente.clear();
+            tfUsernameLoginGerente.requestFocus();
         }
 
-    }
+        }
 
     public void pressButtonMenuGerente(ActionEvent event) throws MalformedURLException {
         switch (((Control) event.getSource()).getId()) {
@@ -106,12 +98,12 @@ public class GerenteController{
 
                 break;
             }
-            case "btVoltarEmissaoRelatorio": {
-                URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                        "\\view\\fxml\\GerarRelatorio.fxml").toUri().toURL();
-                App.nextScene("Geração de Relatório", 520, 400, url, event);
-                break;
-            }
+//            case "btVoltarEmissaoRelatorio": {
+//                URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
+//                        "\\view\\fxml\\GerarRelatorio.fxml").toUri().toURL();
+//                App.nextScene("Geração de Relatório", 520, 400, url, event);
+//                break;
+//            }
 
             case "btVoltarGerarRelatorio": {
                 URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +

@@ -31,16 +31,7 @@ public class GerenteRelatorioController implements Initializable{
 
     GerenteRepositoryImpl gerenteRepository = new GerenteRepositoryImpl();
 
-    private static YearMonth data;
-    public static void dateReceiver(YearMonth dat){
-        data = dat;
-    }
-//    @FXML
-//    private DatePicker dpDataGerarRelatorio;
-//    @FXML
-//    private Button btConfirmarGerarRelatorio;
-//    @FXML
-//    private Button btVoltarGerarRelatorio;
+    private static YearMonth mesAno;
     @FXML
     private TableView<Relatorio> tableRelatorio;
     @FXML
@@ -54,6 +45,8 @@ public class GerenteRelatorioController implements Initializable{
     @FXML
     private TableColumn<Relatorio, LocalDateTime> colSaidaRelatorio;
     @FXML
+    private TableColumn<Relatorio, LocalDateTime> colPagamentoRelatorio;
+    @FXML
     private TableColumn<Relatorio, LocalTime> colTempoRelatorio;
     @FXML
     private TableColumn<Relatorio, BigDecimal> colValorRelatorio;
@@ -61,8 +54,7 @@ public class GerenteRelatorioController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-        ObservableList<Relatorio> oblist = FXCollections.observableArrayList(gerenteRepository.gerarRelatorio(data));
+        ObservableList<Relatorio> oblist = FXCollections.observableArrayList(gerenteRepository.gerarRelatorio(mesAno));
 
 
         colTicketRelatorio.setCellValueFactory(
@@ -72,9 +64,11 @@ public class GerenteRelatorioController implements Initializable{
         colComprovanteRelatorio.setCellValueFactory(
                 new PropertyValueFactory<>("codigoComprovante"));
         colEntradaRelatorio.setCellValueFactory(
-                new PropertyValueFactory<>("entrada"));
+                new PropertyValueFactory<>("dataHoraEntrada"));
         colSaidaRelatorio.setCellValueFactory(
-                new PropertyValueFactory<>("saida"));
+                new PropertyValueFactory<>("dataHoraSaida"));
+        colPagamentoRelatorio.setCellValueFactory(
+                new PropertyValueFactory<>("dataHoraPagamento"));
         colTempoRelatorio.setCellValueFactory(
                 new PropertyValueFactory<>("totalHoras"));
         colValorRelatorio.setCellValueFactory(
@@ -84,35 +78,18 @@ public class GerenteRelatorioController implements Initializable{
 
     }
 
+    public static void dateReceiver(YearMonth mesAn){
+        mesAno = mesAn;
+    }
 
-//    public void pressButtonGerarRelatorio(ActionEvent event) throws MalformedURLException {
-//        switch (((Control) event.getSource()).getId()) {
-//            case "btConfirmarGerarRelatorio": {
-//                if (dpDataGerarRelatorio.getEditor().getText().equals("")) {
-//                    App.infoBox("A Data Alvo Não Pode Ser Nula!", "Geração de Relatório", null);
-//                } else {
-//                    data = dpDataGerarRelatorio.getValue();
-//                    App.infoBox("Relatório Gerado Com Sucesso!", "Geração de Relatório", null);
-//                    URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-//                            "\\view\\fxml\\EmitirRelatorio.fxml").toUri().toURL();
-//                    App.nextScene("Emissão de Relatório", 600, 735, url, event);
-//                }
-//
-//                break;
-//            }
-//            case "btVoltarEmissaoRelatorio": {
-//                URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-//                        "\\view\\fxml\\GerarRelatorio.fxml").toUri().toURL();
-//                App.nextScene("Geração de Relatório", 520, 400, url, event);
-//                break;
-//            }
-//
-//            case "btVoltarGerarRelatorio": {
-//                URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-//                        "\\view\\fxml\\GerenteInicial.fxml").toUri().toURL();
-//                App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
-//                break;
-//            }
-//        }
-//    }
+    public void pressButtonVoltarEmissaoRelatorio(ActionEvent event) throws MalformedURLException{
+        if(((Control) event.getSource()).getId().equals("btVoltarEmissaoRelatorio")){
+            URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
+                    "\\view\\fxml\\GerarRelatorio.fxml").toUri().toURL();
+            App.nextScene("Geração de Relatório", 520, 400, url, event);
+        }
+    }
+
+
+
 }

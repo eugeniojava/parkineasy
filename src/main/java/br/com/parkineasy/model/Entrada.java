@@ -5,7 +5,8 @@ import java.time.LocalDateTime;
 public class Entrada {
 
     private Integer codigoTicket;
-    private LocalDateTime horaEntrada;
+    private LocalDateTime dataHoraEntrada;
+    private String codigoVaga;
 
     public Integer getCodigoTicket() {
         return codigoTicket;
@@ -15,11 +16,28 @@ public class Entrada {
         this.codigoTicket = codigoTicket;
     }
 
-    public LocalDateTime getHoraEntrada() {
-        return horaEntrada;
+    public LocalDateTime getDataHoraEntrada() {
+        return dataHoraEntrada;
     }
 
-    public void setHoraEntrada(LocalDateTime horaEntrada) {
-        this.horaEntrada = horaEntrada;
+    public void setDataHoraEntrada(LocalDateTime dataHoraEntrada) {
+        this.dataHoraEntrada = dataHoraEntrada;
+    }
+
+    public String getCodigoVaga() {
+        return codigoVaga;
+    }
+
+    public void setCodigoVaga(String codigoVaga) {
+        this.codigoVaga = codigoVaga;
+    }
+
+    @Override
+    public String toString() {
+        return "Entrada{" +
+                "codigoTicket=" + codigoTicket +
+                ", horaEntrada=" + dataHoraEntrada +
+                ", codigoDaVaga='" + codigoVaga + '\'' +
+                '}';
     }
 }

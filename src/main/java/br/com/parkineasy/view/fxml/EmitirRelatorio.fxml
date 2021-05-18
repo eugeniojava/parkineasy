@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.parkineasy.view.controller.GerenteRelatorioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="br.com.parkineasy.view.controller.GerenteRelatorioController">
     <top>
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
@@ -26,16 +26,17 @@
             <children>
                 <TableView fx:id="tableRelatorio" prefHeight="547.0" prefWidth="600.0">
                     <columns>
-                        <TableColumn fx:id="colTicketRelatorio" prefWidth="89.0" text="Ticket" />
-                        <TableColumn fx:id="colVagaRelatorio" prefWidth="46.0" text="Vaga" />
-                        <TableColumn fx:id="colComprovanteRelatorio" minWidth="0.0" prefWidth="104.0" text="Comprovante" />
-                        <TableColumn fx:id="colEntradaRelatorio" minWidth="0.0" prefWidth="84.0" text="Entrada" />
-                        <TableColumn fx:id="colSaidaRelatorio" minWidth="0.0" prefWidth="95.0" text="Saída" />
-                        <TableColumn fx:id="colTempoRelatorio" minWidth="0.0" prefWidth="98.0" text="Tempo Utilizado" />
-                        <TableColumn fx:id="colValorRelatorio" minWidth="0.0" prefWidth="83.0" text="Valor" />
+                        <TableColumn fx:id="colTicketRelatorio" prefWidth="64.0" text="Ticket" />
+                        <TableColumn fx:id="colVagaRelatorio" prefWidth="55.0" text="Vaga" />
+                        <TableColumn fx:id="colComprovanteRelatorio" minWidth="0.0" prefWidth="91.0" text="Comprovante" />
+                        <TableColumn fx:id="colEntradaRelatorio" minWidth="0.0" prefWidth="81.0" text="Entrada" />
+                        <TableColumn fx:id="colSaidaRelatorio" minWidth="0.0" prefWidth="54.0" text="Saída" />
+                        <TableColumn fx:id="colPagamentoRelatorio" minWidth="0.0" prefWidth="79.0" text="Pagamento" />
+                        <TableColumn fx:id="colTempoRelatorio" minWidth="0.0" prefWidth="107.0" text="Tempo Utilizado" />
+                  <TableColumn fx:id="colValorRelatorio" minWidth="0.0" prefWidth="68.0" text="Valor" />
                     </columns>
                 </TableView>
-                <Button fx:id="btVoltarEmissaoRelatorio" layoutX="500.0" layoutY="550.0" mnemonicParsing="false" onAction="#pressButtonGerarRelatorio" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #2c344c;" text="Voltar" textFill="WHITE">
+                <Button fx:id="btVoltarEmissaoRelatorio" layoutX="500.0" layoutY="550.0" mnemonicParsing="false" onAction="#pressButtonVoltarEmissaoRelatorio" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #2c344c;" text="Voltar" textFill="WHITE">
                     <font>
                         <Font size="13.0" />
                     </font>

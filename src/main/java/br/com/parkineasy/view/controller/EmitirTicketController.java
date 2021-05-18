@@ -22,7 +22,7 @@ public class EmitirTicketController {
     public void pressButtonTipo(ActionEvent event) throws MalformedURLException {
         switch (((Control) event.getSource()).getId()) {
             case "btComumTipoVaga":
-                LocalVagaController.typeReceiver(3);
+                LocalVagaController.typeReceiver(1);
                 App.infoBox("Vaga Comum Selecionada Com Sucesso!", "Tipo de Vaga", null);
                 break;
             case "btIdosoTipoVaga":
@@ -31,7 +31,7 @@ public class EmitirTicketController {
 
                 break;
             case "btDeficienteTipoVaga":
-                LocalVagaController.typeReceiver(1);
+                LocalVagaController.typeReceiver(3);
                 App.infoBox("Vaga de Deficiente Selecionada Com Sucesso!", "Tipo de Vaga", null);
                 break;
         }
