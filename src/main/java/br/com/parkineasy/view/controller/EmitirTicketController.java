@@ -35,8 +35,12 @@ public class EmitirTicketController {
                 App.infoBox("Vaga de Deficiente Selecionada Com Sucesso!", "Tipo de Vaga", null);
                 break;
         }
-        URL url =
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\LocalVaga.fxml").toUri().toURL();
+        URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\LocalVaga.fxml").toUri().toURL();
         App.nextScene("Seleção do Local da Vaga", 600, 600, url, event);
+    }
+
+    public void pressButtonPagamento(ActionEvent event) throws MalformedURLException{
+        URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\InserirTicket.fxml").toUri().toURL();
+        App.nextScene("Inserção de Ticket", 520, 400, url, event);
     }
 }
