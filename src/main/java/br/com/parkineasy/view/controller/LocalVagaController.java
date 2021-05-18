@@ -3,7 +3,6 @@ package br.com.parkineasy.view.controller;
 import br.com.parkineasy.App;
 import br.com.parkineasy.model.Vaga;
 import br.com.parkineasy.model.enums.TipoVaga;
-import br.com.parkineasy.repository.ReservaRepository;
 import br.com.parkineasy.repository.impl.ReservaRepositoryImpl;
 import br.com.parkineasy.repository.impl.VagaRepositoryImpl;
 import br.com.parkineasy.view.model.VagaTableRow;
@@ -32,19 +31,12 @@ import java.util.ResourceBundle;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
-public class LocalVagaController implements Initializable{
+public class LocalVagaController implements Initializable {
 
     static VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
-
-    ReservaRepositoryImpl reservaRepository = new ReservaRepositoryImpl();
-
     private static Integer tipo;
     private static String codigo;
-
-    public static void typeReceiver(Integer tip){
-        tipo = tip;
-    }
-
+    ReservaRepositoryImpl reservaRepository = new ReservaRepositoryImpl();
     @FXML
     private TableView<VagaTableRow> tableLocalVaga;
     @FXML
@@ -53,6 +45,10 @@ public class LocalVagaController implements Initializable{
     private TableColumn<VagaTableRow, String> colSituacaoLocalVaga;
     @FXML
     private TableColumn<VagaTableRow, TipoVaga> colTipoLocalVaga;
+
+    public static void typeReceiver(Integer tip) {
+        tipo = tip;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,11 +73,10 @@ public class LocalVagaController implements Initializable{
             public void handle(MouseEvent mouseEvent) {
                 System.out.println(codigo = tableLocalVaga.getSelectionModel().getSelectedItem().getCodigoVaga());
                 reservaRepository.salvar(codigo);
-            }});
+            }
+        });
 
-        }
-
-
+    }
 
 
     public void pressBack(ActionEvent event) throws MalformedURLException {
@@ -89,6 +84,7 @@ public class LocalVagaController implements Initializable{
                 Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TipoVaga.fxml").toUri().toURL();
         App.nextScene("Seleção do Tipo de Vaga", 407, 330, url, event);
     }
+
     public void selectRow(MouseEvent mouse) throws MalformedURLException {
         URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\EmitirTicket" +
                 ".fxml").toUri().toURL();

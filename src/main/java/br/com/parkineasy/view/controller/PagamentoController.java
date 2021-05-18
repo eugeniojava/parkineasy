@@ -18,10 +18,8 @@ import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
 public class PagamentoController {
 
-    PagamentoServiceImpl pagamentoService = new PagamentoServiceImpl();
-
     private static Integer codigoTicket;
-
+    PagamentoServiceImpl pagamentoService = new PagamentoServiceImpl();
     @FXML
     private TextField tfCodigoInserirTicket;
     @FXML

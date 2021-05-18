@@ -38,7 +38,7 @@ public class Entrada {
     public String toString() {
         return "Código do Ticket: " + codigoTicket +
                 "\n" +
-                "Código da Vaga: " + codigoVaga+
+                "Código da Vaga: " + codigoVaga +
                 "\n" +
                 "Data de Entrada: " + LocalDate.from(dataHoraEntrada) +
                 "\n" +
