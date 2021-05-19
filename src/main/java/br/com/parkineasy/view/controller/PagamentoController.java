@@ -43,9 +43,9 @@ public class PagamentoController {
     }
 
     public void pressBack(ActionEvent event) throws MalformedURLException {
-        URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\EmitirTicket" +
-                ".fxml").toUri().toURL();
-        App.nextScene("Emissão de Ticket", 600, 400, url, event);
+        URL url =
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente.fxml").toUri().toURL();
+        App.nextScene("Menu do Cliente", 407, 375, url, event);
     }
 
     public void pressButtonConfirm(ActionEvent event) throws MalformedURLException {
@@ -71,13 +71,11 @@ public class PagamentoController {
             case "btCartaoMetodoPagamento":
                 App.infoBox("Pagamento Via Cartão Selecionado!", "Seleção do Método de Pagamento", null);
                 metPagamento = 1;
-                System.out.println(codigoTicket);
                 pagamentoService.efetuarPagamento(codigoTicket, metPagamento);
                 break;
             case "btDinheiroMetodoPagamento":
                 App.infoBox("Pagamento Em Dinheiro Selecionado!", "Seleção do Método de Pagamento", null);
                 metPagamento = 2;
-                System.out.println(codigoTicket);
                 pagamentoService.efetuarPagamento(codigoTicket, metPagamento);
                 break;
         }
@@ -87,10 +85,8 @@ public class PagamentoController {
     }
 
     public void fillComprovanteField() {
-        System.out.println(pagamentoRepository.mostrarComprovante(codigoTicket));
         ComprovantePagamento comprovantePagamento = pagamentoRepository.mostrarComprovante(codigoTicket);
         taEmitirComprovante.setText(comprovantePagamento.toString());
-//        codigoTicket = null;
     }
 
     public void pressButtonFinalPag(ActionEvent event) throws MalformedURLException {

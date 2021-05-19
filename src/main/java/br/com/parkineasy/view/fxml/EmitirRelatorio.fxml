@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="br.com.parkineasy.view.controller.GerenteRelatorioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.parkineasy.view.controller.GerenteRelatorioController">
     <top>
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fitHeight="154.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="157.0" fitWidth="950.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/emissao-relatorio-horizontal.png" />
                     </image>
