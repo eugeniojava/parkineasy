@@ -84,4 +84,15 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
         return false;
     }
 
+    @Override
+    public Boolean conferirTicketEntrada(Integer codigoTicket) {
+        ResultSet resultSet = consulta.executarConsulta("SELECT id_reserva from uso where id_reserva = "+codigoTicket);
+        try{
+          return resultSet.next();
+
+        }catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return false;
+    }
 }
