@@ -1,7 +1,9 @@
 package br.com.parkineasy.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class ComprovantePagamento {
 
@@ -31,5 +33,16 @@ public class ComprovantePagamento {
 
     public void setValorPago(BigDecimal valorPago) {
         this.valorPago = valorPago;
+    }
+
+    @Override
+    public String toString() {
+        return "Codigo do Comprovante = " + codigoTicket +
+                "\n" +
+                "Data da Saída = " + LocalDate.from(dataHoraSaida) +
+                "\n" +
+                "Horário da Saída = " + LocalTime.from(dataHoraSaida) +
+                "\n" +
+                "Valor Total Pago = " + valorPago;
     }
 }

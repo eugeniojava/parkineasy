@@ -1,12 +1,15 @@
 package br.com.parkineasy.view.controller;
 
 import br.com.parkineasy.App;
+import br.com.parkineasy.model.Entrada;
 import br.com.parkineasy.repository.impl.GerenteRepositoryImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,6 +22,8 @@ public class GerenteController {
 
     GerenteRepositoryImpl gerenteRepository = new GerenteRepositoryImpl();
 
+    private static String tfReimprimirTicket;
+
     @FXML
     private TextField tfUsernameLoginGerente;
     @FXML
@@ -27,6 +32,8 @@ public class GerenteController {
     private DatePicker dpDataGerarRelatorio;
     @FXML
     private TextField tfCodigoReimprimirTicket;
+    @FXML
+    private TextArea taReimprimirTicket;
 
     public void pressButtonCancelLogin(ActionEvent event) throws MalformedURLException {
         App.infoBox("Cancelando Login de Gerente!", "Login de Gerente", null);
@@ -127,9 +134,15 @@ public class GerenteController {
         switch (((Control) event.getSource()).getId()) {
             case "btConfirmarReimprimirTicket": {
                 if (tfCodigoReimprimirTicket.getText().equals("")) {
-                    App.infoBox("O código do ticket não pode ser vazio!", "Reimprimir Ticket", null);
-                } else {
+                    App.infoBox("O Código da Vaga Não Pode Ser Vazio!", "Reimprimir Ticket", null);
+                } else if(gerenteRepository.recuperarPorCodigoVaga(tfCodigoReimprimirTicket.getText()) != null){
+                    tfReimprimirTicket = tfCodigoReimprimirTicket.getText();
                     App.infoBox("Reimpressão de Ticket Realizada Com Sucesso!", "Reimprimir Ticket", null);
+                    URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
+                            "\\view\\fxml\\TicketReimpresso.fxml").toUri().toURL();
+                    App.nextScene("Reimpressão de Ticket", 600, 400, url, event);
+                }else{
+                    App.infoBox("O Código da Vaga Inserido É Inválido!", "Reimprimir Ticket", null);
                     tfCodigoReimprimirTicket.clear();
                     tfCodigoReimprimirTicket.requestFocus();
                 }
@@ -143,6 +156,11 @@ public class GerenteController {
                 break;
             }
         }
+    }
+
+    public void fillTicketReimpresso(MouseEvent mouse) throws MalformedURLException {
+        Entrada entrada = gerenteRepository.recuperarPorCodigoVaga(tfReimprimirTicket);
+        taReimprimirTicket.setText(entrada.toString());
     }
 
 //    @Override

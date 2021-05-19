@@ -1,13 +1,17 @@
 package br.com.parkineasy.view.controller;
 
 import br.com.parkineasy.App;
+import br.com.parkineasy.model.ComprovantePagamento;
+import br.com.parkineasy.model.Entrada;
 import br.com.parkineasy.repository.impl.PagamentoRepositoryImpl;
 import br.com.parkineasy.service.impl.PagamentoServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,21 +23,18 @@ import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
 public class PagamentoController {
 
-<<<<<<< HEAD
     PagamentoServiceImpl pagamentoService = new PagamentoServiceImpl();
 
-    ConfirmarSaidaImpl confirmarSaida = new ConfirmarSaidaImpl();
 
     PagamentoRepositoryImpl pagamentoRepository = new PagamentoRepositoryImpl();
 
-=======
->>>>>>> 86a54e22c9f0174a4e38ca46c74195df3d21a2f7
     private static Integer codigoTicket;
-    PagamentoServiceImpl pagamentoService = new PagamentoServiceImpl();
     @FXML
     private TextField tfCodigoInserirTicket;
     @FXML
     private TextField tfCodigoSaida;
+    @FXML
+    private TextArea taEmitirComprovante;
 
     public void validaInputPagamento(KeyEvent event) {
         String regex = "^[0-9]+$";
@@ -72,19 +73,27 @@ public class PagamentoController {
                 metPagamento = 1;
                 System.out.println(codigoTicket);
                 pagamentoService.efetuarPagamento(codigoTicket, metPagamento);
-                codigoTicket = null;
                 break;
             case "btDinheiroMetodoPagamento":
                 App.infoBox("Pagamento Em Dinheiro Selecionado!", "Seleção do Método de Pagamento", null);
                 metPagamento = 2;
                 System.out.println(codigoTicket);
                 pagamentoService.efetuarPagamento(codigoTicket, metPagamento);
-                codigoTicket = null;
                 break;
         }
         URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
                 "\\PagamentoFinalizado.fxml").toUri().toURL();
         App.nextScene("Finalização do Pagamento - Emissão de Comprovante", 600, 400, url, event);
+//        System.out.println(pagamentoRepository.mostrarComprovante(codigoTicket));
+//        ComprovantePagamento comprovantePagamento = pagamentoRepository.mostrarComprovante(codigoTicket);
+//        taEmitirComprovante.setText(comprovantePagamento.toString());
+    }
+
+    public void fillComprovanteField(MouseEvent mouse) throws MalformedURLException {
+        System.out.println(pagamentoRepository.mostrarComprovante(codigoTicket));
+        ComprovantePagamento comprovantePagamento = pagamentoRepository.mostrarComprovante(codigoTicket);
+        taEmitirComprovante.setText(comprovantePagamento.toString());
+        codigoTicket = null;
     }
 
     public void pressButtonFinalPag(ActionEvent event) throws MalformedURLException {
@@ -105,13 +114,15 @@ public class PagamentoController {
     public void pressButtonConfirmSaida(ActionEvent event) throws MalformedURLException {
         if (tfCodigoSaida.getText().equals("")) {
             App.infoBox("O código do comprovante não pode ser vazio!", "Inserção de Comprovante", null);
-        } else if(confirmarSaida.ConferirComprovanteDepagamento(Integer.parseInt(tfCodigoSaida.getText()))){
+        } else if(pagamentoRepository.conferirComprovanteDePagamento(Integer.parseInt(tfCodigoSaida.getText()))){
             App.infoBox("Saída Confirmada - Agradecemos Pela Confiança!", "Inserção de Comprovante", null);
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TipoVaga" +
                     ".fxml").toUri().toURL();
             App.nextScene("Seleção do Tipo de Vaga", 407, 330, url, event);
         }else{
             App.infoBox("O Comprovante Inserido É Inválido!", "Inserção de Comprovante", null);
+            tfCodigoSaida.clear();
+            tfCodigoSaida.requestFocus();
         }
 
     }
