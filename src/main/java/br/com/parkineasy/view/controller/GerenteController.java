@@ -95,13 +95,13 @@ public class GerenteController {
                 if (tfMesAnoRelatorio.getText().equals("")) {
                     App.infoBox("A Data Alvo Não Pode Ser Nula!", "Geração de Relatório", null);
 
-<<<<<<< Updated upstream
+<<<<<<<Updated upstream
                 } else if (Pattern.matches(regex, tfMesAnoRelatorio.getText())) {
                     GerenteRelatorioController.dateReceiver(YearMonth.parse(tfMesAnoRelatorio.getText()));
 =======
-                } else if(Pattern.matches(regex, tfMesAnoRelatorio.getText())){
+                } else if (Pattern.matches(regex, tfMesAnoRelatorio.getText())) {
                     GerenteGerarRelatorioController.dateReceiver(YearMonth.parse(tfMesAnoRelatorio.getText()));
->>>>>>> Stashed changes
+>>>>>>>Stashed changes
                     App.infoBox("Relatório Gerado Com Sucesso!", "Geração de Relatório", null);
                     URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
                             "\\view\\fxml\\GerenteRelatorioEmitido.fxml").toUri().toURL();

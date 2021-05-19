@@ -14,4 +14,3 @@ public interface PagamentoRepository {
 
     Boolean conferirTicketEntrada(Integer codigoTicket);
 }
-

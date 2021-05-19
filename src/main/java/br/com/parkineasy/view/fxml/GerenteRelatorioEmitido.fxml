@@ -10,13 +10,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 <<<<<<< Updated upstream:src/main/java/br/com/parkineasy/view/fxml/EmitirRelatorio.fxml
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
             prefHeight="735.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/16"
             fx:controller="br.com.parkineasy.view.controller.GerenteRelatorioController">
 =======
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="br.com.parkineasy.view.controller.GerenteGerarRelatorioController">
->>>>>>> Stashed changes:src/main/java/br/com/parkineasy/view/fxml/GerenteRelatorioEmitido.fxml
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0"
+            prefWidth="950.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/"
+            fx:controller="br.com.parkineasy.view.controller.GerenteGerarRelatorioController">
+    >>>>>>> Stashed changes:src/main/java/br/com/parkineasy/view/fxml/GerenteRelatorioEmitido.fxml
     <top>
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="600.0"
                     BorderPane.alignment="CENTER">

@@ -77,12 +77,14 @@ public class ClienteLocalVagaController implements Initializable {
 
     public void pressBack(ActionEvent event) throws MalformedURLException {
         URL url =
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteTipoVaga.fxml").toUri().toURL();
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteTipoVaga" +
+                        ".fxml").toUri().toURL();
         App.nextScene("Seleção do Tipo de Vaga", 407, 330, url, event);
     }
 
     public void selectRow(MouseEvent mouse) throws MalformedURLException {
-        URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteTicketEmitido" +
+        URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
+                "\\ClienteTicketEmitido" +
                 ".fxml").toUri().toURL();
         Parent root;
         try {

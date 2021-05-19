@@ -14,6 +14,4 @@ public interface GerenteRepository {
     List<Relatorio> gerarRelatorio(YearMonth mesAno);
 
     Entrada recuperarPorCodigoVaga(String codigoVaga);
-
-
 }

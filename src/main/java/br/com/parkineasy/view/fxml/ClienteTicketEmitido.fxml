@@ -14,8 +14,11 @@
             fx:controller="br.com.parkineasy.view.controller.EmitirTicketController">
 =======
 
-<BorderPane fx:id="paneEmitirTicket" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#fillTicketField" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="br.com.parkineasy.view.controller.ClienteTicketController">
->>>>>>> Stashed changes:src/main/java/br/com/parkineasy/view/fxml/ClienteTicketEmitido.fxml
+<BorderPane fx:id="paneEmitirTicket" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" onMouseEntered="#fillTicketField" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/"
+            fx:controller="br.com.parkineasy.view.controller.ClienteTicketController">
+    >>>>>>> Stashed changes:src/main/java/br/com/parkineasy/view/fxml/ClienteTicketEmitido.fxml
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>

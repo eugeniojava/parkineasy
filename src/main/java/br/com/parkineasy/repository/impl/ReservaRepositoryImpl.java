@@ -1,7 +1,7 @@
 package br.com.parkineasy.repository.impl;
 
 import br.com.parkineasy.model.Entrada;
-import br.com.parkineasy.repository.Consulta;
+import br.com.parkineasy.repository.ConsultaBancoDeDados;
 import br.com.parkineasy.repository.ReservaRepository;
 
 import java.sql.ResultSet;
@@ -11,12 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 public class ReservaRepositoryImpl implements ReservaRepository {
 
-    private final Consulta consulta = new Consulta();
-
-    public static void main(String[] args) {
-        ReservaRepositoryImpl reserva = new ReservaRepositoryImpl();
-
-    }
+    private final ConsultaBancoDeDados consultaBancoDeDados = new ConsultaBancoDeDadosImpl();
 
     @Override
     public Boolean salvar(String codigoVaga) {
@@ -25,28 +20,29 @@ public class ReservaRepositoryImpl implements ReservaRepository {
         Integer consultasASeremRealizadas = 5;
         Integer atualizacoesComSucesso = 0;
 
-        atualizacoesComSucesso = consulta.executarAtualizacao(
+        atualizacoesComSucesso = consultaBancoDeDados.executarAtualizacao(
                 "INSERT INTO reserva(data_hora_entrada) VALUES ('" + dataHoraFormatada + "')");
-        atualizacoesComSucesso += consulta.executarAtualizacao("INSERT INTO pagamento() VALUES ()");
-        atualizacoesComSucesso += consulta.executarAtualizacao(
+        atualizacoesComSucesso += consultaBancoDeDados.executarAtualizacao("INSERT INTO pagamento() VALUES ()");
+        atualizacoesComSucesso += consultaBancoDeDados.executarAtualizacao(
                 "INSERT INTO uso(id_reserva, id_vaga, data_hora_entrada)" +
                         " SELECT id_reserva, \"" + codigoVaga + "\", data_hora_entrada FROM reserva" +
                         " WHERE data_hora_entrada = '" + dataHoraFormatada + "'");
-        atualizacoesComSucesso += consulta.executarAtualizacao(
+        atualizacoesComSucesso += consultaBancoDeDados.executarAtualizacao(
                 "UPDATE uso SET id_pagamento = id_reserva WHERE data_hora_entrada = '" + dataHoraFormatada + "'");
-        atualizacoesComSucesso += consulta.executarAtualizacao(
+        atualizacoesComSucesso += consultaBancoDeDados.executarAtualizacao(
                 "UPDATE vaga SET sit_vaga = 1 WHERE id_vaga = \"" + codigoVaga + "\"");
 
         return atualizacoesComSucesso.equals(consultasASeremRealizadas);
     }
 
+    @Override
     public Entrada recuperarUltimaEntrada() {
         DateTimeFormatter dataHoraFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        ResultSet resultSet = consulta.executarConsulta("SELECT MAX(id_reserva) AS id_reserva FROM uso");
+        ResultSet resultSet = consultaBancoDeDados.executarConsulta("SELECT MAX(id_reserva) AS id_reserva FROM uso");
 
         try {
             if (resultSet.next()) {
-                ResultSet resultSetEntrada = consulta.executarConsulta(
+                ResultSet resultSetEntrada = consultaBancoDeDados.executarConsulta(
                         "SELECT id_reserva, id_vaga, data_hora_entrada FROM uso" +
                                 " WHERE id_reserva = " + resultSet.getInt("id_reserva"));
 
@@ -69,4 +65,3 @@ public class ReservaRepositoryImpl implements ReservaRepository {
         }
     }
 }
-

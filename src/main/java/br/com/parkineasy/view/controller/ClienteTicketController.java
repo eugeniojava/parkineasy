@@ -27,23 +27,26 @@ public class ClienteTicketController {
             case "btTicketMenuCliente":
                 App.infoBox("Opção de Emissão de Ticket Selecionada!", "Menu do Cliente", null);
                 URL url =
-<<<<<<< Updated upstream:src/main/java/br/com/parkineasy/view/controller/EmitirTicketController.java
-                        Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TipoVaga" +
-                                ".fxml").toUri().toURL();
+<<<<<<<Updated upstream:src / main / java / br / com / parkineasy / view / controller / EmitirTicketController.java
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TipoVaga" +
+                        ".fxml").toUri().toURL();
 =======
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteTipoVaga.fxml").toUri().toURL();
->>>>>>> Stashed changes:src/main/java/br/com/parkineasy/view/controller/ClienteTicketController.java
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteTipoVaga" +
+                        ".fxml").toUri().toURL();
+>>>>>>>Stashed changes:src / main / java / br / com / parkineasy / view / controller / ClienteTicketController.java
                 App.nextScene("Seleção do Tipo de Vaga", 407, 370, url, event);
                 break;
             case "btPagamentoMenuCliente":
                 App.infoBox("Opção de Efetuar Pagamento Selecionada", "Menu do Cliente", null);
-<<<<<<< Updated upstream:src/main/java/br/com/parkineasy/view/controller/EmitirTicketController.java
+<<<<<<<Updated upstream:src / main / java / br / com / parkineasy / view / controller / EmitirTicketController.java
                 url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
                         "\\InserirTicket" +
-=======
-                url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteInserirTicketPagamento" +
->>>>>>> Stashed changes:src/main/java/br/com/parkineasy/view/controller/ClienteTicketController.java
-                        ".fxml").toUri().toURL();
+                        == =====
+                url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
+                        "\\ClienteInserirTicketPagamento" +
+                        >>> >>> > Stashed changes:
+            src / main / java / br / com / parkineasy / view / controller / ClienteTicketController.java
+                ".fxml").toUri().toURL();
                 App.nextScene("Inserção de Ticket", 520, 400, url, event);
                 break;
             case "btVoltarMenuCliente":
@@ -73,7 +76,8 @@ public class ClienteTicketController {
                 break;
         }
         URL url =
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteLocalVaga.fxml").toUri().toURL();
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteLocalVaga" +
+                        ".fxml").toUri().toURL();
         App.nextScene("Seleção do Local da Vaga", 600, 600, url, event);
     }
 

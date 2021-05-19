@@ -1,15 +1,15 @@
-package br.com.parkineasy.repository;
+package br.com.parkineasy.repository.impl;
+
+import br.com.parkineasy.repository.ConsultaBancoDeDados;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Consulta {
+public class ConsultaBancoDeDadosImpl implements ConsultaBancoDeDados {
 
-    // retorna o numero de linhas afetadas
-    // executa insert, update e delete
     public Integer executarAtualizacao(String sql) {
-        Statement statement = Conexao.getStatement();
+        Statement statement = ConexaoBancoDeDadosImpl.getInstancia().recuperarStatement();
 
         try {
             return statement.executeUpdate(sql);
@@ -20,10 +20,8 @@ public class Consulta {
         }
     }
 
-    // retorna um objeto ResultSet
-    // executa select
     public ResultSet executarConsulta(String sql) {
-        Statement statement = Conexao.getStatement();
+        Statement statement = ConexaoBancoDeDadosImpl.getInstancia().recuperarStatement();
 
         try {
             return statement.executeQuery(sql);

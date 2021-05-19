@@ -2,7 +2,6 @@ package br.com.parkineasy.repository.impl;
 
 import br.com.parkineasy.model.Entrada;
 import br.com.parkineasy.model.Relatorio;
-import br.com.parkineasy.repository.Consulta;
 import br.com.parkineasy.repository.GerenteRepository;
 
 import java.sql.ResultSet;
@@ -15,18 +14,11 @@ import java.util.List;
 
 public class GerenteRepositoryImpl implements GerenteRepository {
 
-    private final Consulta consulta = new Consulta();
-
-    public static void main(String[] args) {
-        GerenteRepositoryImpl gerente = new GerenteRepositoryImpl();
-        gerente.recuperarPorCodigoVaga("A05");
-
-
-    }
+    private final ConsultaBancoDeDadosImpl consultaBancoDeDadosImpl = new ConsultaBancoDeDadosImpl();
 
     @Override
     public Boolean validarGerente(String username, String senha) {
-        ResultSet resultSet = consulta.executarConsulta(
+        ResultSet resultSet = consultaBancoDeDadosImpl.executarConsulta(
                 "SELECT * FROM gerente" +
                         " WHERE username_gerente = '" + username + "' AND password_gerente = '" + senha + "'");
 
@@ -43,7 +35,7 @@ public class GerenteRepositoryImpl implements GerenteRepository {
     public List<Relatorio> gerarRelatorio(YearMonth mesAno) {
         int mes = mesAno.getMonth().getValue();
         int ano = mesAno.getYear();
-        ResultSet resultSet = consulta.executarConsulta(
+        ResultSet resultSet = consultaBancoDeDadosImpl.executarConsulta(
                 "SELECT * FROM uso WHERE MONTH(data_hora_saida) = " + mes + " AND YEAR(data_hora_saida) = " + ano);
         List<Relatorio> relatorios = new ArrayList<>();
         DateTimeFormatter dataHoraFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -78,12 +70,13 @@ public class GerenteRepositoryImpl implements GerenteRepository {
     @Override
     public Entrada recuperarPorCodigoVaga(String codigoVaga) {
         DateTimeFormatter dataHoraFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        ResultSet resultSet = consulta.executarConsulta("select id_reserva,data_hora_entrada,id_vaga " +
+        ResultSet resultSet = consultaBancoDeDadosImpl.executarConsulta("select id_reserva,data_hora_entrada,id_vaga " +
                 "FROM uso  where id_vaga = \"" + codigoVaga + "\" and data_hora_pagamento IS NULL;");
 
         try {
             if (resultSet.next()) {
-                ResultSet resultSetEntrada = consulta.executarConsulta("select id_reserva,data_hora_entrada,id_vaga " +
+                ResultSet resultSetEntrada = consultaBancoDeDadosImpl.executarConsulta("select id_reserva," +
+                        "data_hora_entrada,id_vaga " +
                         "FROM uso  where id_vaga = \"" + codigoVaga + "\" and data_hora_pagamento IS NULL;");
                 if (resultSetEntrada.next()) {
                     Entrada entrada = new Entrada();

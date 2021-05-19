@@ -107,12 +107,12 @@ public class ClientePagamentoController {
         } else if (pagamentoRepository.conferirComprovanteDePagamento(Integer.parseInt(tfCodigoSaida.getText()))) {
             App.infoBox("Saída Confirmada - Agradecemos Pela Confiança!", "Inserção de Comprovante", null);
             URL url =
-<<<<<<< Updated upstream:src/main/java/br/com/parkineasy/view/controller/PagamentoController.java
-                    Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente" +
-                            ".fxml").toUri().toURL();
+<<<<<<<Updated upstream:src / main / java / br / com / parkineasy / view / controller / PagamentoController.java
+            Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente" +
+                    ".fxml").toUri().toURL();
 =======
-                    Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteMenu.fxml").toUri().toURL();
->>>>>>> Stashed changes:src/main/java/br/com/parkineasy/view/controller/ClientePagamentoController.java
+            Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteMenu.fxml").toUri().toURL();
+>>>>>>>Stashed changes:src / main / java / br / com / parkineasy / view / controller / ClientePagamentoController.java
             App.nextScene("Menu do Cliente", 407, 375, url, event);
         } else {
             App.infoBox("O Comprovante Inserido É Inválido!", "Inserção de Comprovante", null);

@@ -2,7 +2,7 @@ package br.com.parkineasy.repository.impl;
 
 import br.com.parkineasy.model.Vaga;
 import br.com.parkineasy.model.enums.TipoVaga;
-import br.com.parkineasy.repository.Consulta;
+import br.com.parkineasy.repository.ConsultaBancoDeDados;
 import br.com.parkineasy.repository.VagaRepository;
 
 import java.sql.ResultSet;
@@ -12,11 +12,11 @@ import java.util.List;
 
 public class VagaRepositoryImpl implements VagaRepository {
 
-    private final Consulta consulta = new Consulta();
+    private final ConsultaBancoDeDados consultaBancoDeDados = new ConsultaBancoDeDadosImpl();
 
     @Override
     public List<Vaga> recuperarTodas() {
-        ResultSet resultSet = consulta.executarConsulta("SELECT * FROM vaga");
+        ResultSet resultSet = consultaBancoDeDados.executarConsulta("SELECT * FROM vaga");
         List<Vaga> vagas = new ArrayList<>();
 
         try {
@@ -40,7 +40,7 @@ public class VagaRepositoryImpl implements VagaRepository {
 
     @Override
     public List<Vaga> recuperarTodasPorTipoESituacaoLivre(Integer tipo) {
-        ResultSet resultSet = consulta.executarConsulta(
+        ResultSet resultSet = consultaBancoDeDados.executarConsulta(
                 "SELECT * FROM vaga WHERE tip_vaga ='" + tipo + "' and sit_vaga = 0");
         List<Vaga> vagas = new ArrayList<>();
         try {
