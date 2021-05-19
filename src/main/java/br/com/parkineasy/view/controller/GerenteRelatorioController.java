@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Control;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,6 +21,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.YearMonth;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
@@ -46,6 +48,8 @@ public class GerenteRelatorioController implements Initializable {
     private TableColumn<Relatorio, LocalTime> colTempoRelatorio;
     @FXML
     private TableColumn<Relatorio, BigDecimal> colValorRelatorio;
+    @FXML
+    private Label lbValorTotalRelatorio;
 
     public static void dateReceiver(YearMonth mesAn) {
         mesAno = mesAn;
@@ -75,6 +79,14 @@ public class GerenteRelatorioController implements Initializable {
                 new PropertyValueFactory<>("valorPago"));
 
         tableRelatorio.setItems(oblist);
+
+        List<Relatorio> listaRelatorios = gerenteRepository.gerarRelatorio(mesAno);
+        BigDecimal soma = BigDecimal.ZERO;
+        for (int i = 0; i < listaRelatorios.size(); i++) {
+            soma = soma.add(listaRelatorios.get(i).getValorPago());
+        }
+        lbValorTotalRelatorio.setText(soma.toString());
+        System.out.println(soma);
 
     }
 

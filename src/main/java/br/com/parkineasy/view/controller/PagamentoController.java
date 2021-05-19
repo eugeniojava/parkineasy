@@ -53,14 +53,16 @@ public class PagamentoController {
     public void pressButtonConfirm(ActionEvent event) throws MalformedURLException {
         if (tfCodigoInserirTicket.getText().equals("")) {
             App.infoBox("O código do ticket não pode ser vazio!", "Inserção de Ticket", null);
-        } else {
-            System.out.println(Integer.parseInt(tfCodigoInserirTicket.getText()));
+        } else if(pagamentoRepository.conferirTicketEntrada(Integer.parseInt(tfCodigoInserirTicket.getText()))){
             codigoTicket = Integer.parseInt(tfCodigoInserirTicket.getText());
-            System.out.println(codigoTicket);
             App.infoBox("Ticket Inserido Com Sucesso!", "Inserção de Ticket", null);
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
                     "\\MetodoPagamento.fxml").toUri().toURL();
             App.nextScene("Seleção do Método de Pagamento", 600, 400, url, event);
+        }else{
+            App.infoBox("O Ticket Inserido É Inválido!", "Inserção de Ticket", null);
+            tfCodigoInserirTicket.clear();
+            tfCodigoInserirTicket.requestFocus();
         }
 
     }

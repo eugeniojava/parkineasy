@@ -12,7 +12,7 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="btConfirmarReimprimirTicket" layoutX="200.0" layoutY="175.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #2c344c;" text="Confirmar" textFill="WHITE">
+                <Button fx:id="btConfirmarReimprimirTicket" layoutX="200.0" layoutY="175.0" mnemonicParsing="false" onAction="#pressButtonConfirmarReimpressao" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #2c344c;" text="Confirmar" textFill="WHITE">
                     <font>
                         <Font size="13.0" />
                     </font>

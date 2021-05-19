@@ -92,9 +92,6 @@ public class GerenteRepositoryImpl implements GerenteRepository {
                     entrada.setCodigoVaga(resultSetEntrada.getString("id_vaga"));
                     entrada.setDataHoraEntrada(
                             LocalDateTime.parse(resultSetEntrada.getString("data_hora_entrada"), dataHoraFormato));
-                    System.out.println(entrada.getCodigoTicket());
-                    System.out.println(entrada.getCodigoVaga());
-                    System.out.println(entrada.getDataHoraEntrada());
 
                     return entrada;
                 }
