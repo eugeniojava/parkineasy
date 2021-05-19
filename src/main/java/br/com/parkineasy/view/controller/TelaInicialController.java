@@ -14,13 +14,13 @@ public class TelaInicialController {
     public void pressButtonCli(ActionEvent event) throws MalformedURLException {
         App.infoBox("Módulo de Cliente Selecionado Com Sucesso!", "Seleção de Módulo", null);
         URL url =
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente.fxml").toUri().toURL();
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteMenu.fxml").toUri().toURL();
         App.nextScene("Menu do Cliente", 407, 375, url, event);
     }
 
     public void pressButtonGer(ActionEvent event) throws MalformedURLException {
         App.infoBox("Módulo de Gerente Selecionado Com Sucesso!", "Seleção de Módulo", null);
-        URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\LoginGerente" +
+        URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\GerenteLogin" +
                 ".fxml").toUri().toURL();
         App.nextScene("Login da Gerência", 520, 400, url, event);
     }

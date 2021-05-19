@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
-public class GerenteVagasController implements Initializable {
+public class GerenteConsultarVagasController implements Initializable {
 
     VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
 
@@ -62,7 +62,7 @@ public class GerenteVagasController implements Initializable {
     public void pressButtonConsultarVagas(ActionEvent event) throws MalformedURLException {
         if ("btVoltarPainelVagas".equals(((Control) event.getSource()).getId())) {
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
-                    "\\fxml\\GerenteInicial.fxml").toUri().toURL();
+                    "\\fxml\\GerentePainelControle.fxml").toUri().toURL();
             App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
         }
     }

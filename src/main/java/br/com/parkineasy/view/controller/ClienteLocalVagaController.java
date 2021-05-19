@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
-public class LocalVagaController implements Initializable {
+public class ClienteLocalVagaController implements Initializable {
 
     static VagaRepositoryImpl vagaRepository = new VagaRepositoryImpl();
     private static Integer tipo;
@@ -77,12 +77,12 @@ public class LocalVagaController implements Initializable {
 
     public void pressBack(ActionEvent event) throws MalformedURLException {
         URL url =
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TipoVaga.fxml").toUri().toURL();
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteTipoVaga.fxml").toUri().toURL();
         App.nextScene("Seleção do Tipo de Vaga", 407, 330, url, event);
     }
 
     public void selectRow(MouseEvent mouse) throws MalformedURLException {
-        URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\EmitirTicket" +
+        URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteTicketEmitido" +
                 ".fxml").toUri().toURL();
         Parent root;
         try {

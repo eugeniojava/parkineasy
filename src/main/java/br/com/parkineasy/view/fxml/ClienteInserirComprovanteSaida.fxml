@@ -10,7 +10,7 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity"
             prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx"
-            fx:controller="br.com.parkineasy.view.controller.PagamentoController">
+            fx:controller="br.com.parkineasy.view.controller.ClientePagamentoController">
     <left>
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="228.0"
                     BorderPane.alignment="CENTER">

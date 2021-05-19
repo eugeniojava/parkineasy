@@ -47,7 +47,7 @@ public class GerenteController {
                 tfPasswordLoginGerente.getText())) {
             App.infoBox("Gerente Autenticado Com Sucesso!", "Login de Gerente", null);
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view" +
-                    "\\fxml\\GerenteInicial.fxml").toUri().toURL();
+                    "\\fxml\\GerentePainelControle.fxml").toUri().toURL();
             App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
         } else {
             App.infoBox("O Usuário ou Senha Inseridos Estão Incorretos!", "Login de Gerente", null);
@@ -62,26 +62,26 @@ public class GerenteController {
         switch (((Control) event.getSource()).getId()) {
             case "btGerarRelatorioPainel": {
                 URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                        "\\view\\fxml\\GerarRelatorio.fxml").toUri().toURL();
+                        "\\view\\fxml\\GerenteGerarRelatorio.fxml").toUri().toURL();
                 App.nextScene("Geração de Relatório", 520, 400, url, event);
                 break;
             }
             case "btConsultarVagasPainel": {
                 URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                        "\\view\\fxml\\ConsultarVagas.fxml").toUri().toURL();
+                        "\\view\\fxml\\GerenteConsultarVagas.fxml").toUri().toURL();
                 App.nextScene("Painel de Vagas do Estacionamento", 600, 600, url, event);
                 break;
             }
             case "btReimprimirTicketPainel": {
                 URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                        "\\view\\fxml\\ReimprimirTicket.fxml").toUri().toURL();
+                        "\\view\\fxml\\GerenteReimprimirTicket.fxml").toUri().toURL();
                 App.nextScene("Reimpressão de Ticket", 520, 400, url, event);
                 break;
             }
             case "btSairPainel": {
                 App.infoBox("Fazendo Logout...", "Painel de Controle do Estacionamento", null);
                 URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                        "\\view\\fxml\\LoginGerente.fxml").toUri().toURL();
+                        "\\view\\fxml\\GerenteLogin.fxml").toUri().toURL();
                 App.nextScene("Login da Gerência", 520, 400, url, event);
                 break;
             }
@@ -95,11 +95,16 @@ public class GerenteController {
                 if (tfMesAnoRelatorio.getText().equals("")) {
                     App.infoBox("A Data Alvo Não Pode Ser Nula!", "Geração de Relatório", null);
 
+<<<<<<< Updated upstream
                 } else if (Pattern.matches(regex, tfMesAnoRelatorio.getText())) {
                     GerenteRelatorioController.dateReceiver(YearMonth.parse(tfMesAnoRelatorio.getText()));
+=======
+                } else if(Pattern.matches(regex, tfMesAnoRelatorio.getText())){
+                    GerenteGerarRelatorioController.dateReceiver(YearMonth.parse(tfMesAnoRelatorio.getText()));
+>>>>>>> Stashed changes
                     App.infoBox("Relatório Gerado Com Sucesso!", "Geração de Relatório", null);
                     URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                            "\\view\\fxml\\EmitirRelatorio.fxml").toUri().toURL();
+                            "\\view\\fxml\\GerenteRelatorioEmitido.fxml").toUri().toURL();
                     App.nextScene("Emissão de Relatório", 950, 735, url, event);
                 } else {
                     App.infoBox("A Data Alvo Inserida É Inválida! Utilize o Formato Requisitado. Exemplo: 2021-05",
@@ -111,7 +116,7 @@ public class GerenteController {
 
             case "btVoltarGerarRelatorio": {
                 URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                        "\\view\\fxml\\GerenteInicial.fxml").toUri().toURL();
+                        "\\view\\fxml\\GerentePainelControle.fxml").toUri().toURL();
                 App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
                 break;
             }
@@ -127,7 +132,7 @@ public class GerenteController {
                     tfReimprimirTicket = tfCodigoReimprimirTicket.getText();
                     App.infoBox("Reimpressão de Ticket Realizada Com Sucesso!", "Reimprimir Ticket", null);
                     URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                            "\\view\\fxml\\TicketReimpresso.fxml").toUri().toURL();
+                            "\\view\\fxml\\GerenteTicketReimpresso.fxml").toUri().toURL();
                     App.nextScene("Reimpressão de Ticket", 600, 400, url, event);
                 } else {
                     App.infoBox("O Código da Vaga Inserido É Inválido!", "Reimprimir Ticket", null);
@@ -138,7 +143,7 @@ public class GerenteController {
             }
             case "btVoltarReimprimirTicket": {
                 URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                        "\\view\\fxml\\GerenteInicial.fxml").toUri().toURL();
+                        "\\view\\fxml\\GerentePainelControle.fxml").toUri().toURL();
                 App.nextScene("Painel de Controle do Estacionamento", 600, 400, url, event);
                 break;
             }
@@ -152,7 +157,7 @@ public class GerenteController {
 
     public void pressButtonConfirmarReimpressao(ActionEvent event) throws MalformedURLException {
         URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                "\\view\\fxml\\ReimprimirTicket.fxml").toUri().toURL();
+                "\\view\\fxml\\GerenteReimprimirTicket.fxml").toUri().toURL();
         App.nextScene("Reimpressão de Ticket", 520, 400, url, event);
     }
 

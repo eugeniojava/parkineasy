@@ -11,7 +11,7 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity"
             prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/"
-            fx:controller="br.com.parkineasy.view.controller.LocalVagaController">
+            fx:controller="br.com.parkineasy.view.controller.ClienteLocalVagaController">
     <top>
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="600.0"
                     BorderPane.alignment="CENTER">

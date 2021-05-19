@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
 
-public class EmitirTicketController {
+public class ClienteTicketController {
 
     ReservaRepositoryImpl reservaRepository = new ReservaRepositoryImpl();
 
@@ -27,14 +27,22 @@ public class EmitirTicketController {
             case "btTicketMenuCliente":
                 App.infoBox("Opção de Emissão de Ticket Selecionada!", "Menu do Cliente", null);
                 URL url =
+<<<<<<< Updated upstream:src/main/java/br/com/parkineasy/view/controller/EmitirTicketController.java
                         Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TipoVaga" +
                                 ".fxml").toUri().toURL();
+=======
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteTipoVaga.fxml").toUri().toURL();
+>>>>>>> Stashed changes:src/main/java/br/com/parkineasy/view/controller/ClienteTicketController.java
                 App.nextScene("Seleção do Tipo de Vaga", 407, 370, url, event);
                 break;
             case "btPagamentoMenuCliente":
                 App.infoBox("Opção de Efetuar Pagamento Selecionada", "Menu do Cliente", null);
+<<<<<<< Updated upstream:src/main/java/br/com/parkineasy/view/controller/EmitirTicketController.java
                 url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
                         "\\InserirTicket" +
+=======
+                url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteInserirTicketPagamento" +
+>>>>>>> Stashed changes:src/main/java/br/com/parkineasy/view/controller/ClienteTicketController.java
                         ".fxml").toUri().toURL();
                 App.nextScene("Inserção de Ticket", 520, 400, url, event);
                 break;
@@ -51,27 +59,27 @@ public class EmitirTicketController {
     public void pressButtonTipo(ActionEvent event) throws MalformedURLException {
         switch (((Control) event.getSource()).getId()) {
             case "btComumTipoVaga":
-                LocalVagaController.typeReceiver(1);
+                ClienteLocalVagaController.typeReceiver(1);
                 App.infoBox("Vaga Comum Selecionada Com Sucesso!", "Tipo de Vaga", null);
                 break;
             case "btIdosoTipoVaga":
-                LocalVagaController.typeReceiver(2);
+                ClienteLocalVagaController.typeReceiver(2);
                 App.infoBox("Vaga de Idoso Selecionada Com Sucesso!", "Tipo de Vaga", null);
 
                 break;
             case "btDeficienteTipoVaga":
-                LocalVagaController.typeReceiver(3);
+                ClienteLocalVagaController.typeReceiver(3);
                 App.infoBox("Vaga de Deficiente Selecionada Com Sucesso!", "Tipo de Vaga", null);
                 break;
         }
         URL url =
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\LocalVaga.fxml").toUri().toURL();
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteLocalVaga.fxml").toUri().toURL();
         App.nextScene("Seleção do Local da Vaga", 600, 600, url, event);
     }
 
     public void pressButtonVoltarTipo(ActionEvent event) throws MalformedURLException {
         URL url =
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente.fxml").toUri().toURL();
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteMenu.fxml").toUri().toURL();
         App.nextScene("Menu do Cliente", 407, 375, url, event);
     }
 
@@ -83,7 +91,7 @@ public class EmitirTicketController {
     public void pressButtonConfirmarTicket(ActionEvent event) throws MalformedURLException {
         App.infoBox("Ticket Confirmado! Retornando Para o Menu do Cliente.", "Tipo de Vaga", null);
         URL url =
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente.fxml").toUri().toURL();
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteMenu.fxml").toUri().toURL();
         App.nextScene("Menu do Cliente", 407, 375, url, event);
     }
 }

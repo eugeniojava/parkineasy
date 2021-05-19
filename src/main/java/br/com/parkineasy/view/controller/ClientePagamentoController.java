@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
 
-public class PagamentoController {
+public class ClientePagamentoController {
 
     private static Integer codigoTicket;
     PagamentoServiceImpl pagamentoService = new PagamentoServiceImpl();
@@ -41,7 +41,7 @@ public class PagamentoController {
 
     public void pressBack(ActionEvent event) throws MalformedURLException {
         URL url =
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente.fxml").toUri().toURL();
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteMenu.fxml").toUri().toURL();
         App.nextScene("Menu do Cliente", 407, 375, url, event);
     }
 
@@ -52,7 +52,7 @@ public class PagamentoController {
             codigoTicket = Integer.parseInt(tfCodigoInserirTicket.getText());
             App.infoBox("Ticket Inserido Com Sucesso!", "Inserção de Ticket", null);
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
-                    "\\MetodoPagamento.fxml").toUri().toURL();
+                    "\\ClienteMetodoPagamento.fxml").toUri().toURL();
             App.nextScene("Seleção do Método de Pagamento", 600, 400, url, event);
         } else {
             App.infoBox("O Ticket Inserido É Inválido!", "Inserção de Ticket", null);
@@ -77,7 +77,7 @@ public class PagamentoController {
                 break;
         }
         URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
-                "\\PagamentoFinalizado.fxml").toUri().toURL();
+                "\\ClienteComprovanteEmitido.fxml").toUri().toURL();
         App.nextScene("Finalização do Pagamento - Emissão de Comprovante", 600, 400, url, event);
     }
 
@@ -89,7 +89,7 @@ public class PagamentoController {
     public void pressButtonFinalPag(ActionEvent event) throws MalformedURLException {
         App.infoBox("Saindo Do Estacionamento!", "Redirecionando Para a Saída", null);
         URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
-                "\\InserirComprovante.fxml").toUri().toURL();
+                "\\ClienteInserirComprovanteSaida.fxml").toUri().toURL();
         App.nextScene("Saída do Estacionamento", 520, 400, url, event);
     }
 
@@ -107,8 +107,12 @@ public class PagamentoController {
         } else if (pagamentoRepository.conferirComprovanteDePagamento(Integer.parseInt(tfCodigoSaida.getText()))) {
             App.infoBox("Saída Confirmada - Agradecemos Pela Confiança!", "Inserção de Comprovante", null);
             URL url =
+<<<<<<< Updated upstream:src/main/java/br/com/parkineasy/view/controller/PagamentoController.java
                     Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente" +
                             ".fxml").toUri().toURL();
+=======
+                    Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\ClienteMenu.fxml").toUri().toURL();
+>>>>>>> Stashed changes:src/main/java/br/com/parkineasy/view/controller/ClientePagamentoController.java
             App.nextScene("Menu do Cliente", 407, 375, url, event);
         } else {
             App.infoBox("O Comprovante Inserido É Inválido!", "Inserção de Comprovante", null);
@@ -120,7 +124,7 @@ public class PagamentoController {
 
     public void pressBackSaida(ActionEvent event) throws MalformedURLException {
         URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
-                "\\PagamentoFinalizado.fxml").toUri().toURL();
+                "\\ClienteComprovanteEmitido.fxml").toUri().toURL();
         App.nextScene("Finalização do Pagamento - Emissão de Comprovante", 600, 400, url, event);
     }
 }

@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
-public class GerenteRelatorioController implements Initializable {
+public class GerenteGerarRelatorioController implements Initializable {
 
     private static YearMonth mesAno;
     GerenteRepositoryImpl gerenteRepository = new GerenteRepositoryImpl();
@@ -104,7 +104,7 @@ public class GerenteRelatorioController implements Initializable {
     public void pressButtonVoltarEmissaoRelatorio(ActionEvent event) throws MalformedURLException {
         if (((Control) event.getSource()).getId().equals("btVoltarEmissaoRelatorio")) {
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
-                    "\\view\\fxml\\GerarRelatorio.fxml").toUri().toURL();
+                    "\\view\\fxml\\GerenteGerarRelatorio.fxml").toUri().toURL();
             App.nextScene("Geração de Relatório", 520, 400, url, event);
         }
     }
