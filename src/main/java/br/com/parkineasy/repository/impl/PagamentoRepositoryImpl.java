@@ -41,9 +41,10 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
     public ComprovantePagamento mostrarComprovante(Integer codigoTicket) {
         DateTimeFormatter dataHoraFormato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         ResultSet resultSet = consulta.executarConsulta("select pagamento.data_hora_pagamento,comprovante_pagamento," +
-                "valor_pago from pagamento,uso where pagamento.id_pagamento = "+codigoTicket+" and uso.id_reserva = "+codigoTicket);
-        try{
-            if(resultSet.next()){
+                "valor_pago from pagamento,uso where pagamento.id_pagamento = " + codigoTicket + " and uso.id_reserva" +
+                " = " + codigoTicket);
+        try {
+            if (resultSet.next()) {
                 ComprovantePagamento comprovante = new ComprovantePagamento();
                 comprovante.setCodigoTicket(resultSet.getInt("comprovante_pagamento"));
                 comprovante.setValorPago(resultSet.getBigDecimal("valor_pago"));
@@ -53,7 +54,7 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
                 return comprovante;
 
             }
-        }catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
 
@@ -73,8 +74,8 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
                                 "WHERE comprovante_pagamento = " + comprovanteSaida + "))");
 
                 result += consulta.executarAtualizacao("UPDATE uso set data_hora_saida = now() where" +
-                                                            " id_pagamento = (select id_pagamento from pagamento " +
-                                                                     " where comprovante_pagamento = "+comprovanteSaida+");");
+                        " id_pagamento = (select id_pagamento from pagamento " +
+                        " where comprovante_pagamento = " + comprovanteSaida + ");");
 
                 return result == 2;
             }
@@ -86,11 +87,12 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
 
     @Override
     public Boolean conferirTicketEntrada(Integer codigoTicket) {
-        ResultSet resultSet = consulta.executarConsulta("SELECT id_reserva from uso where id_reserva = "+codigoTicket);
-        try{
-          return resultSet.next();
+        ResultSet resultSet =
+                consulta.executarConsulta("SELECT id_reserva from uso where id_reserva = " + codigoTicket);
+        try {
+            return resultSet.next();
 
-        }catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
         return false;

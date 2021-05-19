@@ -12,6 +12,6 @@ public interface PagamentoRepository {
 
     Boolean conferirComprovanteDePagamento(Integer comprovanteSaida);
 
-    Boolean conferirTicketEntrada (Integer codigoTicket);
+    Boolean conferirTicketEntrada(Integer codigoTicket);
 }
 

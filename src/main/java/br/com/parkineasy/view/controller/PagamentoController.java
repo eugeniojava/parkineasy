@@ -21,12 +21,9 @@ import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
 public class PagamentoController {
 
-    PagamentoServiceImpl pagamentoService = new PagamentoServiceImpl();
-
-
-    PagamentoRepositoryImpl pagamentoRepository = new PagamentoRepositoryImpl();
-
     private static Integer codigoTicket;
+    PagamentoServiceImpl pagamentoService = new PagamentoServiceImpl();
+    PagamentoRepositoryImpl pagamentoRepository = new PagamentoRepositoryImpl();
     @FXML
     private TextField tfCodigoInserirTicket;
     @FXML
@@ -51,13 +48,13 @@ public class PagamentoController {
     public void pressButtonConfirm(ActionEvent event) throws MalformedURLException {
         if (tfCodigoInserirTicket.getText().equals("")) {
             App.infoBox("O código do ticket não pode ser vazio!", "Inserção de Ticket", null);
-        } else if(pagamentoRepository.conferirTicketEntrada(Integer.parseInt(tfCodigoInserirTicket.getText()))){
+        } else if (pagamentoRepository.conferirTicketEntrada(Integer.parseInt(tfCodigoInserirTicket.getText()))) {
             codigoTicket = Integer.parseInt(tfCodigoInserirTicket.getText());
             App.infoBox("Ticket Inserido Com Sucesso!", "Inserção de Ticket", null);
             URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
                     "\\MetodoPagamento.fxml").toUri().toURL();
             App.nextScene("Seleção do Método de Pagamento", 600, 400, url, event);
-        }else{
+        } else {
             App.infoBox("O Ticket Inserido É Inválido!", "Inserção de Ticket", null);
             tfCodigoInserirTicket.clear();
             tfCodigoInserirTicket.requestFocus();
@@ -107,12 +104,13 @@ public class PagamentoController {
     public void pressButtonConfirmSaida(ActionEvent event) throws MalformedURLException {
         if (tfCodigoSaida.getText().equals("")) {
             App.infoBox("O código do comprovante não pode ser vazio!", "Inserção de Comprovante", null);
-        } else if(pagamentoRepository.conferirComprovanteDePagamento(Integer.parseInt(tfCodigoSaida.getText()))){
+        } else if (pagamentoRepository.conferirComprovanteDePagamento(Integer.parseInt(tfCodigoSaida.getText()))) {
             App.infoBox("Saída Confirmada - Agradecemos Pela Confiança!", "Inserção de Comprovante", null);
             URL url =
-                    Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente.fxml").toUri().toURL();
+                    Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente" +
+                            ".fxml").toUri().toURL();
             App.nextScene("Menu do Cliente", 407, 375, url, event);
-        }else{
+        } else {
             App.infoBox("O Comprovante Inserido É Inválido!", "Inserção de Comprovante", null);
             tfCodigoSaida.clear();
             tfCodigoSaida.requestFocus();
