@@ -1,6 +1,7 @@
 package br.com.parkineasy.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -39,24 +40,36 @@ public class Relatorio {
         this.codigoComprovante = codigoComprovante;
     }
 
-    public LocalDateTime getDataHoraEntrada() {
-        return dataHoraEntrada;
+    public LocalDate getDataEntrada() {
+        return LocalDate.from(dataHoraEntrada);
+    }
+
+    public LocalTime getHoraEntrada() {
+        return LocalTime.from(dataHoraEntrada);
     }
 
     public void setDataHoraEntrada(LocalDateTime dataHoraEntrada) {
         this.dataHoraEntrada = dataHoraEntrada;
     }
 
-    public LocalDateTime getDataHoraSaida() {
-        return dataHoraSaida;
+    public LocalDate getDataSaida() {
+        return LocalDate.from(dataHoraSaida);
+    }
+
+    public LocalTime getHoraSaida() {
+        return LocalTime.from(dataHoraSaida);
     }
 
     public void setDataHoraSaida(LocalDateTime dataHoraSaida) {
         this.dataHoraSaida = dataHoraSaida;
     }
 
-    public LocalDateTime getDataHoraPagamento() {
-        return dataHoraPagamento;
+    public LocalDate getDataPagamento() {
+        return LocalDate.from(dataHoraPagamento);
+    }
+
+    public LocalTime getHoraPagamento() {
+        return LocalTime.from(dataHoraPagamento);
     }
 
     public void setDataHoraPagamento(LocalDateTime dataHoraPagamento) {
@@ -77,19 +90,5 @@ public class Relatorio {
 
     public void setValorPago(BigDecimal valorPago) {
         this.valorPago = valorPago;
-    }
-
-    @Override
-    public String toString() {
-        return "Relatorio{" +
-                "codigoTicket=" + codigoTicket +
-                ", codigoVaga='" + codigoVaga + '\'' +
-                ", codigoComprovante=" + codigoComprovante +
-                ", dataHoraEntrada=" + dataHoraEntrada +
-                ", dataHoraSaida=" + dataHoraSaida +
-                ", dataHoraPagamento=" + dataHoraPagamento +
-                ", totalHoras=" + totalHoras +
-                ", valorPago=" + valorPago +
-                '}';
     }
 }

@@ -2,7 +2,6 @@ package br.com.parkineasy.view.controller;
 
 import br.com.parkineasy.App;
 import br.com.parkineasy.model.ComprovantePagamento;
-import br.com.parkineasy.model.Entrada;
 import br.com.parkineasy.repository.impl.PagamentoRepositoryImpl;
 import br.com.parkineasy.service.impl.PagamentoServiceImpl;
 import javafx.event.ActionEvent;
@@ -11,7 +10,6 @@ import javafx.scene.control.Control;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -68,7 +66,7 @@ public class PagamentoController {
     }
 
     public void pressButtonMetodo(ActionEvent event) throws MalformedURLException {
-        Integer metPagamento;
+        int metPagamento;
         switch (((Control) event.getSource()).getId()) {
             case "btCartaoMetodoPagamento":
                 App.infoBox("Pagamento Via Cartão Selecionado!", "Seleção do Método de Pagamento", null);
@@ -86,16 +84,13 @@ public class PagamentoController {
         URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml" +
                 "\\PagamentoFinalizado.fxml").toUri().toURL();
         App.nextScene("Finalização do Pagamento - Emissão de Comprovante", 600, 400, url, event);
-//        System.out.println(pagamentoRepository.mostrarComprovante(codigoTicket));
-//        ComprovantePagamento comprovantePagamento = pagamentoRepository.mostrarComprovante(codigoTicket);
-//        taEmitirComprovante.setText(comprovantePagamento.toString());
     }
 
-    public void fillComprovanteField(MouseEvent mouse) throws MalformedURLException {
+    public void fillComprovanteField() {
         System.out.println(pagamentoRepository.mostrarComprovante(codigoTicket));
         ComprovantePagamento comprovantePagamento = pagamentoRepository.mostrarComprovante(codigoTicket);
         taEmitirComprovante.setText(comprovantePagamento.toString());
-        codigoTicket = null;
+//        codigoTicket = null;
     }
 
     public void pressButtonFinalPag(ActionEvent event) throws MalformedURLException {
@@ -118,9 +113,9 @@ public class PagamentoController {
             App.infoBox("O código do comprovante não pode ser vazio!", "Inserção de Comprovante", null);
         } else if(pagamentoRepository.conferirComprovanteDePagamento(Integer.parseInt(tfCodigoSaida.getText()))){
             App.infoBox("Saída Confirmada - Agradecemos Pela Confiança!", "Inserção de Comprovante", null);
-            URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TipoVaga" +
-                    ".fxml").toUri().toURL();
-            App.nextScene("Seleção do Tipo de Vaga", 407, 330, url, event);
+            URL url =
+                    Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente.fxml").toUri().toURL();
+            App.nextScene("Menu do Cliente", 407, 375, url, event);
         }else{
             App.infoBox("O Comprovante Inserido É Inválido!", "Inserção de Comprovante", null);
             tfCodigoSaida.clear();

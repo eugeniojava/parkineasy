@@ -14,8 +14,8 @@ public class TelaInicialController {
     public void pressButtonCli(ActionEvent event) throws MalformedURLException {
         App.infoBox("Módulo de Cliente Selecionado Com Sucesso!", "Seleção de Módulo", null);
         URL url =
-                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TipoVaga.fxml").toUri().toURL();
-        App.nextScene("Seleção do Tipo de Vaga", 407, 330, url, event);
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente.fxml").toUri().toURL();
+        App.nextScene("Menu do Cliente", 407, 375, url, event);
     }
 
     public void pressButtonGer(ActionEvent event) throws MalformedURLException {

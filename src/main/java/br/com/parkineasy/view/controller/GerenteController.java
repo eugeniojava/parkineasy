@@ -2,23 +2,17 @@ package br.com.parkineasy.view.controller;
 
 import br.com.parkineasy.App;
 import br.com.parkineasy.model.Entrada;
-import br.com.parkineasy.model.Relatorio;
 import br.com.parkineasy.repository.impl.GerenteRepositoryImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import org.w3c.dom.Text;
-
-import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.time.YearMonth;
-import java.util.List;
+import java.util.regex.Pattern;
 
 import static br.com.parkineasy.App.PARKINEASY_FOLDER;
 
@@ -32,8 +26,6 @@ public class GerenteController {
     private TextField tfUsernameLoginGerente;
     @FXML
     private TextField tfPasswordLoginGerente;
-//    @FXML
-//    private DatePicker dpDataGerarRelatorio;
     @FXML
     private TextField tfCodigoReimprimirTicket;
     @FXML
@@ -97,16 +89,20 @@ public class GerenteController {
         }
     }
     public void pressButtonGerarRelatorio(ActionEvent event) throws MalformedURLException {
+        final String regex = "^[0-9]{4}-(0{1}[1-9]{1}|1{1}[0-2])$";
         switch (((Control) event.getSource()).getId()) {
             case "btConfirmarGerarRelatorio": {
-                if (tfMesAnoRelatorio.getText() == null) {
+                if (tfMesAnoRelatorio.getText().equals("")) {
                     App.infoBox("A Data Alvo Não Pode Ser Nula!", "Geração de Relatório", null);
-                } else{
+
+                } else if(Pattern.matches(regex, tfMesAnoRelatorio.getText())){
                     GerenteRelatorioController.dateReceiver(YearMonth.parse(tfMesAnoRelatorio.getText()));
                     App.infoBox("Relatório Gerado Com Sucesso!", "Geração de Relatório", null);
                     URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy" +
                             "\\view\\fxml\\EmitirRelatorio.fxml").toUri().toURL();
-                    App.nextScene("Emissão de Relatório", 600, 735, url, event);
+                    App.nextScene("Emissão de Relatório", 950, 735, url, event);
+                }else{
+                    App.infoBox("A Data Alvo Inserida É Inválida! Utilize o Formato Requisitado. Exemplo: 2021-05", "Geração de Relatório", null);
                 }
 
                 break;
@@ -137,7 +133,6 @@ public class GerenteController {
                     tfCodigoReimprimirTicket.clear();
                     tfCodigoReimprimirTicket.requestFocus();
                 }
-
                 break;
             }
             case "btVoltarReimprimirTicket": {
@@ -149,7 +144,7 @@ public class GerenteController {
         }
     }
 
-    public void fillTicketReimpresso(MouseEvent mouse) throws MalformedURLException {
+    public void fillTicketReimpresso(){
         Entrada entrada = gerenteRepository.recuperarPorCodigoVaga(tfReimprimirTicket);
         taReimprimirTicket.setText(entrada.toString());
     }

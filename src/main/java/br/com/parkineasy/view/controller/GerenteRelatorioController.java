@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.util.List;
@@ -39,11 +39,17 @@ public class GerenteRelatorioController implements Initializable {
     @FXML
     private TableColumn<Relatorio, Integer> colComprovanteRelatorio;
     @FXML
-    private TableColumn<Relatorio, LocalDateTime> colEntradaRelatorio;
+    private TableColumn<Relatorio, LocalDate> colDataEntradaRelatorio;
     @FXML
-    private TableColumn<Relatorio, LocalDateTime> colSaidaRelatorio;
+    private TableColumn<Relatorio, LocalTime> colHorarioEntradaRelatorio;
     @FXML
-    private TableColumn<Relatorio, LocalDateTime> colPagamentoRelatorio;
+    private TableColumn<Relatorio, LocalDate> colDataSaidaRelatorio;
+    @FXML
+    private TableColumn<Relatorio, LocalTime> colHorarioSaidaRelatorio;
+    @FXML
+    private TableColumn<Relatorio, LocalDate> colDataPagamentoRelatorio;
+    @FXML
+    private TableColumn<Relatorio, LocalTime> colHorarioPagamentoRelatorio;
     @FXML
     private TableColumn<Relatorio, LocalTime> colTempoRelatorio;
     @FXML
@@ -67,12 +73,18 @@ public class GerenteRelatorioController implements Initializable {
                 new PropertyValueFactory<>("codigoVaga"));
         colComprovanteRelatorio.setCellValueFactory(
                 new PropertyValueFactory<>("codigoComprovante"));
-        colEntradaRelatorio.setCellValueFactory(
-                new PropertyValueFactory<>("dataHoraEntrada"));
-        colSaidaRelatorio.setCellValueFactory(
-                new PropertyValueFactory<>("dataHoraSaida"));
-        colPagamentoRelatorio.setCellValueFactory(
-                new PropertyValueFactory<>("dataHoraPagamento"));
+        colDataEntradaRelatorio.setCellValueFactory(
+                new PropertyValueFactory<>("dataEntrada"));
+        colHorarioEntradaRelatorio.setCellValueFactory(
+                new PropertyValueFactory<>("horaEntrada"));
+        colDataSaidaRelatorio.setCellValueFactory(
+                new PropertyValueFactory<>("dataSaida"));
+        colHorarioSaidaRelatorio.setCellValueFactory(
+                new PropertyValueFactory<>("horaSaida"));
+        colDataPagamentoRelatorio.setCellValueFactory(
+                new PropertyValueFactory<>("dataPagamento"));
+        colHorarioPagamentoRelatorio.setCellValueFactory(
+                new PropertyValueFactory<>("horaPagamento"));
         colTempoRelatorio.setCellValueFactory(
                 new PropertyValueFactory<>("totalHoras"));
         colValorRelatorio.setCellValueFactory(
@@ -86,7 +98,6 @@ public class GerenteRelatorioController implements Initializable {
             soma = soma.add(listaRelatorios.get(i).getValorPago());
         }
         lbValorTotalRelatorio.setText(soma.toString());
-        System.out.println(soma);
 
     }
 

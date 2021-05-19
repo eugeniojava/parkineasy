@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,6 +21,29 @@ public class EmitirTicketController {
 
     @FXML
     TextArea taEmitirTicket;
+
+    public void pressButtonMenuCliente(ActionEvent event) throws MalformedURLException {
+        switch (((Control) event.getSource()).getId()) {
+            case "btTicketMenuCliente":
+                App.infoBox("Opção de Emissão de Ticket Selecionada!", "Menu do Cliente", null);
+                URL url =
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TipoVaga.fxml").toUri().toURL();
+                App.nextScene("Seleção do Tipo de Vaga", 407, 330, url, event);
+                break;
+            case "btPagamentoMenuCliente":
+                App.infoBox("Opção de Efetuar Pagamento Selecionada", "Menu do Cliente", null);
+                url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\InserirTicket" +
+                        ".fxml").toUri().toURL();
+                App.nextScene("Inserção de Ticket", 520, 400, url, event);
+                break;
+            case "btVoltarMenuCliente":
+                url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\TelaInicial" +
+                        ".fxml").toUri().toURL();
+                App.nextScene("Seleção de Módulo", 520, 400, url, event);
+                break;
+        }
+
+    }
 
 
     public void pressButtonTipo(ActionEvent event) throws MalformedURLException {
@@ -45,15 +67,15 @@ public class EmitirTicketController {
         App.nextScene("Seleção do Local da Vaga", 600, 600, url, event);
     }
 
-    public void fillTicketField(MouseEvent mouse) throws MalformedURLException {
+    public void fillTicketField(){
         Entrada entrada = reservaRepository.recuperarUltimaEntrada();
-        System.out.println(entrada);
         taEmitirTicket.setText(entrada.toString());
     }
 
-    public void pressButtonPagamento(ActionEvent event) throws MalformedURLException {
-        URL url = Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\InserirTicket" +
-                ".fxml").toUri().toURL();
-        App.nextScene("Inserção de Ticket", 520, 400, url, event);
+    public void pressButtonConfirmarTicket(ActionEvent event) throws MalformedURLException {
+        App.infoBox("Ticket Confirmado! Retornando Para o Menu do Cliente.", "Tipo de Vaga", null);
+        URL url =
+                Paths.get(PARKINEASY_FOLDER + "\\src\\main\\java\\br\\com\\parkineasy\\view\\fxml\\MenuCliente.fxml").toUri().toURL();
+        App.nextScene("Menu do Cliente", 407, 375, url, event);
     }
 }

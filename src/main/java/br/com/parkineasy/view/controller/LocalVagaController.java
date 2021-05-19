@@ -9,7 +9,6 @@ import br.com.parkineasy.view.model.VagaTableRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -68,12 +67,9 @@ public class LocalVagaController implements Initializable {
 
         tableLocalVaga.setItems(listaV);
 
-        tableLocalVaga.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println(codigo = tableLocalVaga.getSelectionModel().getSelectedItem().getCodigoVaga());
-                reservaRepository.salvar(codigo);
-            }
+        tableLocalVaga.setOnMousePressed(mouseEvent -> {
+            codigo = tableLocalVaga.getSelectionModel().getSelectedItem().getCodigoVaga();
+            reservaRepository.salvar(codigo);
         });
 
     }

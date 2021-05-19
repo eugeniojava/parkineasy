@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16"
+            prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/"
             fx:controller="br.com.parkineasy.view.controller.GerenteVagasController">
     <top>
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="600.0"
