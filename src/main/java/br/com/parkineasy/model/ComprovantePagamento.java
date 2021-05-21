@@ -39,9 +39,9 @@ public class ComprovantePagamento {
     public String toString() {
         return "Codigo do Comprovante = " + codigoTicket +
                 "\n" +
-                "Data da Saída = " + LocalDate.from(dataHoraSaida) +
+                "Data do Pagamento = " + LocalDate.from(dataHoraSaida) +
                 "\n" +
-                "Horário da Saída = " + LocalTime.from(dataHoraSaida) +
+                "Horário do Pagamento = " + LocalTime.from(dataHoraSaida) +
                 "\n" +
                 "Valor Total Pago = " + valorPago;
     }

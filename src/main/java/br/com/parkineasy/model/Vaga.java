@@ -40,8 +40,4 @@ public class Vaga {
                 ", tipoVaga=" + tipoVaga +
                 '}';
     }
-
-    //TODO buscarVaga()
-    //TODO gerarTicket()
-    //TODO painelVagas()
 }

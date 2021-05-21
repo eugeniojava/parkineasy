@@ -23,9 +23,4 @@ public class Gerente {
     public void setCodigoVaga(String codigoVaga) {
         this.codigoVaga = codigoVaga;
     }
-
-
-    //TODO gerarRelatorio();
-    //TODO consultarVagas();
-    //TODO reimprimirTicket();
 }

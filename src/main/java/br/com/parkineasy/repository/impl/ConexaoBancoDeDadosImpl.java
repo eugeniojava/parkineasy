@@ -9,7 +9,6 @@ import java.sql.Statement;
 
 public class ConexaoBancoDeDadosImpl implements ConexaoBancoDeDados {
 
-    // ConexaoBancoDeDadosImpl.getInstancia()
 
     private static ConexaoBancoDeDadosImpl instancia;
     private Connection connection;
